@@ -1,22 +1,37 @@
+@import url('https://fonts.googleapis.com/css2?family=Barrio&family=Dosis&display=swap');
+
 :root {
-  font-family: Inter, system-ui, Helvetica, Arial, sans-serif;
+  font-family: 'Dosis', system-ui, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
-  font-size: 18px;
   color: white;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   -webkit-text-size-adjust: 100%;
+  scroll-behavior: smooth;
 }
 
 * {
   box-sizing: border-box;
   margin: 0;
-  scroll-behavior: smooth;
 }
 body {
   background: #354149 url('/images/background.jpg') no-repeat center/cover fixed;
-  min-height: 100vh;
+  min-height: 100dvh;
+  padding: 0.1rem;
+  font-size: calc(1rem + 0.5vw);
+}
+
+h1,
+h2,
+h3 {
+  font-family: 'Barrio', cursive;
+}
+
+@supports not (min-height: 100dvh) {
+  body {
+    min-height: 100vh;
+  }
 }
