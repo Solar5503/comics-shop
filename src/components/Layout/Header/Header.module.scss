@@ -4,15 +4,17 @@
   grid-template-rows: 4fr 1fr;
   align-items: center;
   background: #21292e url('/images/header.jpg') no-repeat top/cover;
-  min-height: 50vh;
   margin: 2rem;
   border-radius: 1rem;
-  box-shadow: black 0px 0px 5px, black 0px 0px 10px, black 0px 0px 15px,
-    #ff2d95 0px 0px 20px, #ff2d95 0px 0px 30px, #ff2d95 0px 0px 40px,
-    #ff2d95 0px 0px 50px, #ff2d95 0px 0px 75px;
-  &__logo {
-    width: 20vw;
+  box-shadow: var(--primary-box-shadow);
+  filter: brightness(0.85);
+  min-height: 30dvh;
+
+  &__link-logo {
     grid-row: span 2;
+  }
+  &__logo {
+    max-width: 80%;
     padding-left: 20px;
     filter: drop-shadow(#fff 0px 0px 5px);
   }
@@ -21,9 +23,14 @@
     text-align: center;
     align-self: end;
     font-size: calc(1rem + 6vw);
-    color: rgb(255, 34, 34);
+    color: var(--primary-color);
     text-shadow: #fff 0px 0px 5px, #fff 0px 0px 10px, #fff 0px 0px 15px,
       #ff2d95 0px 0px 20px, #ff2d95 0px 0px 30px, #ff2d95 0px 0px 40px,
       #ff2d95 0px 0px 50px, #ff2d95 0px 0px 75px;
+  }
+}
+@supports not (max-height: 30dvh) {
+  .header {
+    min-height: 30vh;
   }
 }

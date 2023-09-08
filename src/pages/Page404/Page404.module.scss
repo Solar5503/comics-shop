@@ -2,9 +2,8 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-}
-
-img {
-  max-width: 38vw;
-  margin: 1rem;
+  &__img {
+    max-width: 38vw;
+    margin: 1rem;
+  }
 }

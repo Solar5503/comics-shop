@@ -6,13 +6,18 @@ const Navbar = () => {
     <nav>
       <ul className={styles.navbar}>
         <li>
+          <NavLink className={styles['navbar__links']} to="/">
+            Home
+          </NavLink>
+        </li>
+        <li>
           <NavLink
             className={({ isActive }) =>
               isActive
                 ? `${styles['navbar__links']} ${styles['navbar__links--active']}`
                 : `${styles['navbar__links']}`
             }
-            to="/"
+            to="/comics"
           >
             Comics
           </NavLink>
