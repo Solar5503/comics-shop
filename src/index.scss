@@ -15,6 +15,10 @@
   --primary-box-shadow: black 0px 0px 5px, black 0px 0px 10px,
     black 0px 0px 15px, #ff2d95 0px 0px 20px, #ff2d95 0px 0px 30px,
     #ff2d95 0px 0px 40px, #ff2d95 0px 0px 50px, #ff2d95 0px 0px 75px;
+  --secondary-box-shadow: #fff 0px 0px 10px, #ff2d95 0px 0px 20px;
+  --primary-text-shadow: #fff 0px 0px 5px, #fff 0px 0px 10px, #fff 0px 0px 15px,
+    #ff2d95 0px 0px 20px, #ff2d95 0px 0px 30px, #ff2d95 0px 0px 40px,
+    #ff2d95 0px 0px 50px, #ff2d95 0px 0px 75px;
 }
 
 * {
@@ -27,15 +31,13 @@ body {
 }
 
 h1,
-h2,
-h3 {
+h2 {
   font-family: 'Barrio', cursive;
 }
 
 #root {
   display: grid;
-  grid-template-rows: auto 1fr auto;
-  grid-template-columns: 1fr;
+  grid-template-rows: min-content 1fr min-content;
   min-height: 100dvh;
 }
 

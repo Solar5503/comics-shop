@@ -1,7 +1,7 @@
 import { Route, Routes } from 'react-router-dom'
 import Cart from '../pages/Cart'
 import Characters from '../pages/Characters'
-import Comics from '../pages/Comics'
+import Comics from '../pages/Comics/Comics'
 import Home from '../pages/Home'
 import MyComicsZone from '../pages/MyComicsZone'
 import Page404 from '../pages/Page404/Page404'
