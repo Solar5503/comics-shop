@@ -1,0 +1,13 @@
+.input {
+  width: 100%;
+  padding: 0.5rem 1.5rem;
+  font-size: calc(1rem + 0.2vw);
+  border-radius: 1rem;
+  border: 0.2rem solid var(--primary-color);
+  outline: none;
+  background-color: rgba(0, 0, 0, 0.555);
+  color: antiquewhite;
+}
+.input::placeholder {
+  color: var(--primary-color);
+}

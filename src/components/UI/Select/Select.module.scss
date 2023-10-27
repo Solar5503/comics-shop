@@ -1,0 +1,36 @@
+.select {
+  border: 0.2rem solid var(--primary-color);
+  color: var(--primary-color);
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  border-radius: 1rem;
+  padding: 0.5rem;
+  font-size: calc(1rem + 0.2vw);
+  outline: none;
+  cursor: pointer;
+  background-color: transparent;
+  width: 100%;
+}
+.select-wrapper {
+  position: relative;
+  // width: calc(5rem + 7vw);
+  // width: calc(0.5rem + 7vw);
+  width: clamp(0.6rem + 7vw, 13%, 12vw);
+  --url-arrow: url('');
+}
+.select-wrapper::after {
+  content: var(--url-arrow);
+  position: absolute;
+  right: 0.4rem;
+  margin-top: 0.4rem;
+  pointer-events: none;
+}
+option {
+  background-color: black;
+}
+
+option:disabled {
+  background-color: var(--primary-color);
+  color: white;
+}

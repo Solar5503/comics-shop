@@ -1,15 +1,5 @@
 import axios from 'axios'
-import { MarvelServerResponse } from '../types/types'
-
-export type TOrderBy =
-  | 'title'
-  | 'onsaleDate'
-  | 'modified'
-  | 'focDate' // Final Date of Order Cut-off
-  | '-title'
-  | '-onsaleDate'
-  | '-modified'
-  | '-focDate'
+import { MarvelServerResponse, TOrderBy } from '../types/types'
 
 const MARVEL_URL = 'https://gateway.marvel.com/v1/public/'
 
