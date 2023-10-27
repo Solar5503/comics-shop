@@ -2,7 +2,7 @@ import { useMemo } from 'react'
 
 export const useSorting = function <T extends Record<string, unknown>>(
   array: T[],
-  sort: string
+  sort: keyof T
 ): T[] {
   const sortedArray = useMemo(() => {
     if (sort) {
@@ -26,16 +26,18 @@ export const useSorting = function <T extends Record<string, unknown>>(
 
 export const useSortingAndSearching = function <
   T extends Record<string, unknown>
->(array: T[], sort: string, query: string) {
+>(array: T[], sort: keyof T, query: string, filterProperty: keyof T): T[] {
   const sortedArray = useSorting(array, sort)
 
   const sortedAndFilteredArray = useMemo(() => {
     return sortedArray.filter((item) => {
       if (!query) return true
-      if (typeof item.title === 'string')
-        return item.title.toLowerCase().includes(query.toLowerCase())
+      if (item[filterProperty] && typeof item[filterProperty] === 'string')
+        return (item[filterProperty] as string)
+          .toLowerCase()
+          .includes(query.toLowerCase())
     })
-  }, [sortedArray, query])
+  }, [sortedArray, query, filterProperty])
 
   return sortedAndFilteredArray
 }

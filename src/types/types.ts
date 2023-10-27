@@ -72,8 +72,8 @@ export interface MarvelServerResponse {
   etag: string
 }
 
-export interface IFilter {
-  sort: string
+export interface IFilter<T> {
+  sort: keyof T
   query: string
   limitComics: number
   orderByDate: TOrderBy
