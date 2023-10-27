@@ -10,8 +10,8 @@ import { IComic, IFilter, TOrderBy } from '../../types/types'
 
 const Comics = () => {
   const [comics, setComics] = useState<IComic[]>([])
-  const [filter, setFilter] = useState<IFilter>({
-    sort: '',
+  const [filter, setFilter] = useState<IFilter<IComic>>({
+    sort: 'format',
     query: '',
     limitComics: 20,
     orderByDate: '-focDate',
@@ -19,7 +19,8 @@ const Comics = () => {
   const sortedAndFilteredComics = useSortingAndSearching<IComic>(
     comics,
     filter.sort,
-    filter.query
+    filter.query,
+    'title'
   )
 
   const [fetchComics, isComicsLoading, ComicsError] = useFetching<
