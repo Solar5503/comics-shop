@@ -3,10 +3,10 @@ import styles from './Navbar.module.scss'
 
 const Navbar = () => {
   return (
-    <nav>
+    <nav role="navigation" aria-label="main">
       <ul className={styles.navbar}>
         <li>
-          <NavLink className={styles['navbar__links']} to="/">
+          <NavLink className={styles['navbar__links']} to="/" aria-label="Home">
             Home
           </NavLink>
         </li>
@@ -18,6 +18,7 @@ const Navbar = () => {
                 : `${styles['navbar__links']}`
             }
             to="/comics"
+            aria-label="Comics"
           >
             Comics
           </NavLink>
@@ -30,6 +31,7 @@ const Navbar = () => {
                 : `${styles['navbar__links']}`
             }
             to="/characters"
+            aria-label="Characters"
           >
             Characters
           </NavLink>
@@ -42,6 +44,7 @@ const Navbar = () => {
                 : `${styles['navbar__links']}`
             }
             to="/my-comics-zone"
+            aria-label="My comics zone"
           >
             My Comics Zone
           </NavLink>

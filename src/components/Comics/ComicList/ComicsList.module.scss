@@ -7,11 +7,17 @@
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   gap: 2rem;
   justify-items: center;
+
   &__title {
-    text-align: center;
+    grid-column: 1 / -1;
     color: var(--primary-color);
     text-shadow: var(--primary-text-shadow);
     font-size: calc(1rem + 3vw);
-    grid-column: 1 / -1;
+    text-align: center;
+  }
+  &__empty {
+    text-align: center;
+    text-shadow: var(--primary-text-shadow);
+    font-size: calc(1rem + 1vw);
   }
 }

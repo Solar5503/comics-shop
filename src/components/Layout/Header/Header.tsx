@@ -5,7 +5,7 @@ import styles from './Header.module.scss'
 const Header = () => {
   return (
     <header className={styles.header}>
-      <NavLink className={styles['header__link-logo']} to="/">
+      <NavLink className={styles['header__link-logo']} to="/" aria-label="Home">
         <img
           className={styles['header__logo']}
           src="/logo/logo.svg"

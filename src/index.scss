@@ -19,12 +19,28 @@
   --primary-text-shadow: #fff 0px 0px 5px, #fff 0px 0px 10px, #fff 0px 0px 15px,
     #ff2d95 0px 0px 20px, #ff2d95 0px 0px 30px, #ff2d95 0px 0px 40px,
     #ff2d95 0px 0px 50px, #ff2d95 0px 0px 75px;
+  --secondary-text-shadow: #fff 3px 0px 5px, #fff 3px 0px 10px;
 }
 
 * {
   box-sizing: border-box;
   margin: 0;
+  scrollbar-color: var(--primary-color) black;
+  scrollbar-width: thin;
 }
+
+::-webkit-scrollbar {
+  background-color: black;
+  width: 6px;
+  height: 6px;
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: var(--primary-color);
+  border-radius: 5px;
+}
+
 body {
   background: #354149 url('/images/background.jpg') no-repeat center/cover fixed;
   font-size: clamp(1rem, 1.2vw, 2.5rem + 0.5vw);

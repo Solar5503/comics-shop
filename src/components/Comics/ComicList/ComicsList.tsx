@@ -1,5 +1,5 @@
-import { IComic } from '../../../../types/types'
-import Error from '../../Error/Error'
+import { IComic } from '../../../types/types'
+import Card from '../../UI/Card/Card'
 import ComicCard from '../ComicCard/ComicCard'
 import styles from './ComicsList.module.scss'
 
@@ -8,7 +8,12 @@ interface IComicsListProps {
 }
 
 const ComicsList = ({ comics }: IComicsListProps) => {
-  if (comics.length === 0) return <Error error="No comics found!" />
+  if (comics.length === 0)
+    return (
+      <Card>
+        <p className={styles.comicsList__empty}>No comics found !</p>
+      </Card>
+    )
 
   return (
     <div className={styles.comicsList}>

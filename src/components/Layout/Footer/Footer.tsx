@@ -5,7 +5,7 @@ const Footer = () => {
 
   return (
     <footer className={styles.footer}>
-      <nav>
+      <nav role="navigation" aria-label="additional">
         <h4 className={styles['footer__title']}>Follow Us</h4>
         <ul className={styles['footer__social-networks']}>
           <li>
@@ -13,6 +13,7 @@ const Footer = () => {
               href="https://web.telegram.org/"
               target="_blank"
               className={styles['footer__social-networks-links']}
+              aria-label="Telegram"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -46,6 +47,7 @@ const Footer = () => {
               href="https://www.instagram.com/"
               target="_blank"
               className={styles['footer__social-networks-links']}
+              aria-label="Instagram"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -152,6 +154,7 @@ const Footer = () => {
               href="https://vk.com/"
               target="_blank"
               className={styles['footer__social-networks-links']}
+              aria-label="VK"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -176,19 +179,34 @@ const Footer = () => {
       </nav>
       <nav>
         <div className={styles['footer__legal']}>
-          <ul className={styles['footer__legal-notices']}>
+          <ul
+            className={styles['footer__legal-notices']}
+            aria-label="Legal notices"
+          >
             <li>
-              <a href="#" className={styles['footer__legal-links']}>
+              <a
+                href="#"
+                className={styles['footer__legal-links']}
+                aria-label="Privacy Policy"
+              >
                 Privacy Policy
               </a>
             </li>
             <li>
-              <a href="#" className={styles['footer__legal-links']}>
+              <a
+                href="#"
+                className={styles['footer__legal-links']}
+                aria-label="Terms of Use"
+              >
                 Terms of Use
               </a>
             </li>
             <li>
-              <a href="#" className={styles['footer__legal-links']}>
+              <a
+                href="#"
+                className={styles['footer__legal-links']}
+                aria-label="License Agreement"
+              >
                 License Agreement
               </a>
             </li>

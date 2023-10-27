@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { IComic } from '../../../../types/types'
+import { IComic } from '../../../types/types'
 import styles from './ComicCard.module.scss'
 
 interface ComicCardProps {

@@ -7,7 +7,15 @@ export interface IImagesCarousel {
   path: string
 }
 
-export interface IComic {
+export type TOrderBy =
+  | 'onsaleDate'
+  | 'modified'
+  | 'focDate' // Final Date of Order Cut-off
+  | '-onsaleDate'
+  | '-modified'
+  | '-focDate'
+
+export type IComic = {
   id: number
   title: string
   description?: string
@@ -62,4 +70,11 @@ export interface MarvelServerResponse {
     results: IResults[]
   }
   etag: string
+}
+
+export interface IFilter {
+  sort: string
+  query: string
+  limitComics: number
+  orderByDate: TOrderBy
 }
