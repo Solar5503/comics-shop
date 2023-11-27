@@ -1,12 +1,12 @@
-import { IComic, IFilter, TOrderBy } from '../../../types/types'
+import { IFilter, TOrderBy, TSortBy } from '../../../types/types'
 import Card from '../../UI/Card/Card'
 import Input from '../../UI/Input/Input'
 import Select from '../../UI/Select/Select'
 import styles from './ComicFilter.module.scss'
 
 interface IComicFilterProps {
-  filter: IFilter<IComic>
-  setFilter: React.Dispatch<React.SetStateAction<IFilter<IComic>>>
+  filter: IFilter
+  setFilter: React.Dispatch<React.SetStateAction<IFilter>>
 }
 
 const ComicFilter = ({ filter, setFilter }: IComicFilterProps) => {
@@ -30,7 +30,7 @@ const ComicFilter = ({ filter, setFilter }: IComicFilterProps) => {
         urlArrow="/select/hulk-arrow.svg"
         value={filter.sort}
         changeHandler={(value) =>
-          setFilter((prev) => ({ ...prev, sort: value as keyof IComic }))
+          setFilter((prev) => ({ ...prev, sort: value as TSortBy }))
         }
         defaultValue="Sort by"
         options={[

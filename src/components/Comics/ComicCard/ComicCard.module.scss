@@ -16,9 +16,29 @@
   overflow: hidden;
   position: relative;
   cursor: pointer;
+  transition: transform 0.3s ease-in-out;
 
   &__header {
     @extend %border;
+  }
+
+  &__header--comic {
+    background-color: red;
+  }
+  &__header--trade-paperback {
+    background-color: gold;
+  }
+  &__header--digital-vertical-comic {
+    background-color: dodgerblue;
+  }
+  &__header--hardcover {
+    background-color: limegreen;
+  }
+  &__header--digital-comic {
+    background-color: blueviolet;
+  }
+  &__header--digest {
+    background-color: black;
   }
 
   &__header,
@@ -93,5 +113,8 @@
 
   &:hover &__description {
     transform: translateY(0);
+  }
+  &:hover {
+    transform: translateY(-0.7rem);
   }
 }

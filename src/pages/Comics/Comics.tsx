@@ -4,22 +4,27 @@ import ComicsList from '../../components/Comics/ComicList/ComicsList'
 import Error from '../../components/UI/Error/Error'
 import Loader from '../../components/UI/Loader/Loader'
 import { useFetching } from '../../hooks/useFetching'
+import { useObserver } from '../../hooks/useObserver'
 import { useSortingAndSearching } from '../../hooks/useSortingAndSearching'
 import ComicsService from '../../services/ComicsService'
-import { IComic, IFilter, TOrderBy } from '../../types/types'
+import { IFilter, TComic, TOrderBy } from '../../types/types'
+import { getTotalCount } from '../../utils/getTotalCount'
 
 const Comics = () => {
-  const [comics, setComics] = useState<IComic[]>([])
-  const [filter, setFilter] = useState<IFilter<IComic>>({
-    sort: 'format',
-    query: '',
-    limitComics: 20,
-    orderByDate: '-focDate',
-  })
-  const sortedAndFilteredComics = useSortingAndSearching<IComic>(
+  const [comics, setComics] = useState<TComic[]>([])
+  const [offsetComics, setOffsetComics] = useState<number>(0)
+  const [totalOffset, setTotalOffset] = useState<number>(0)
+  const [{ limitComics, orderByDate, query, sort }, setFilter] =
+    useState<IFilter>({
+      sort: '',
+      query: '',
+      limitComics: 20,
+      orderByDate: '-focDate',
+    })
+  const sortedAndFilteredComics = useSortingAndSearching<TComic>(
     comics,
-    filter.sort,
-    filter.query,
+    sort,
+    query,
     'title'
   )
 
@@ -29,7 +34,10 @@ const Comics = () => {
     TOrderBy
   >(async (limit, offset, orderBy) => {
     const response = await ComicsService.getAllComics(limit, offset, orderBy)
-    const comicsFromServer: IComic[] = response.map((comic) => ({
+    const totalComicsCount = response.total
+    setTotalOffset(getTotalCount(totalComicsCount, limitComics))
+
+    const comicsFromServer: TComic[] = response.results.map((comic) => ({
       id: comic.id,
       title: comic.title,
       price: comic.prices[0].price,
@@ -41,21 +49,41 @@ const Comics = () => {
       pageCount: comic.pageCount,
       format: comic.format,
     }))
-    setComics(comicsFromServer)
+
+    setComics((prev) =>
+      //remove duplicates
+      [...prev, ...comicsFromServer].filter(
+        (el1, i, ar) => i === ar.findIndex((el2) => el2.id === el1.id)
+      )
+    )
   })
 
+  const targetRefComics = useObserver(
+    () => setOffsetComics((prev) => prev + limitComics),
+    isComicsLoading,
+    offsetComics < totalOffset && query.length === 0,
+    '150%'
+  )
+
   useEffect(() => {
-    fetchComics(filter.limitComics, 0, filter.orderByDate)
-  }, [fetchComics, filter.limitComics, filter.orderByDate])
+    fetchComics(limitComics, offsetComics, orderByDate)
+  }, [fetchComics, limitComics, orderByDate, offsetComics])
 
   return (
     <section>
       {ComicsError && <Error error={ComicsError} />}
-      <ComicFilter filter={filter} setFilter={setFilter} />
-      {isComicsLoading && <Loader />}
-      {!ComicsError && !isComicsLoading && (
-        <ComicsList comics={sortedAndFilteredComics} />
+      <ComicFilter
+        filter={{ limitComics, orderByDate, query, sort }}
+        setFilter={setFilter}
+      />
+      {!ComicsError && (
+        <ComicsList
+          comics={sortedAndFilteredComics}
+          isComicsLoading={isComicsLoading}
+        />
       )}
+      {isComicsLoading && <Loader />}
+      <div ref={targetRefComics} />
     </section>
   )
 }

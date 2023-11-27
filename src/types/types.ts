@@ -15,7 +15,7 @@ export type TOrderBy =
   | '-modified'
   | '-focDate'
 
-export type IComic = {
+export type TComic = {
   id: number
   title: string
   description?: string
@@ -72,8 +72,10 @@ export interface MarvelServerResponse {
   etag: string
 }
 
-export interface IFilter<T> {
-  sort: keyof T
+export type TSortBy = 'title' | 'format' | 'price' | ''
+
+export interface IFilter {
+  sort: TSortBy
   query: string
   limitComics: number
   orderByDate: TOrderBy

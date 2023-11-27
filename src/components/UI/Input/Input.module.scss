@@ -6,7 +6,7 @@
   border: 0.2rem solid var(--primary-color);
   outline: none;
   background-color: rgba(0, 0, 0, 0.555);
-  color: antiquewhite;
+  color: var(--secondary-color);
 }
 .input::placeholder {
   color: var(--primary-color);
