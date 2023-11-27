@@ -1,8 +1,14 @@
 import { useMemo } from 'react'
 
+/**
+ * Sorts an array of objects based on a given key.
+ * @param {T[]} array - The array to be sorted.
+ * @param {string} sort - The key to sort the array by.
+ * @return {T[]} The sorted array.
+ */
 export const useSorting = function <T extends Record<string, unknown>>(
   array: T[],
-  sort: keyof T
+  sort: string
 ): T[] {
   const sortedArray = useMemo(() => {
     if (sort) {
@@ -24,9 +30,17 @@ export const useSorting = function <T extends Record<string, unknown>>(
   return sortedArray
 }
 
+/**
+ * This is a custom hook for sorting and searching an array of objects.
+ * @param {T[]} array - The array to be sorted and filtered.
+ * @param {string} sort - The key to sort the array by.
+ * @param {string} query - The search query.
+ * @param {keyof T} filterProperty - The property to filter the array by.
+ * @returns {T[]} The sorted and filtered array.
+ */
 export const useSortingAndSearching = function <
   T extends Record<string, unknown>
->(array: T[], sort: keyof T, query: string, filterProperty: keyof T): T[] {
+>(array: T[], sort: string, query: string, filterProperty: keyof T): T[] {
   const sortedArray = useSorting(array, sort)
 
   const sortedAndFilteredArray = useMemo(() => {

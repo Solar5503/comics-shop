@@ -1,14 +1,15 @@
-import { IComic } from '../../../types/types'
+import { TComic } from '../../../types/types'
 import Card from '../../UI/Card/Card'
 import ComicCard from '../ComicCard/ComicCard'
 import styles from './ComicsList.module.scss'
 
 interface IComicsListProps {
-  comics: IComic[]
+  comics: TComic[]
+  isComicsLoading: boolean
 }
 
-const ComicsList = ({ comics }: IComicsListProps) => {
-  if (comics.length === 0)
+const ComicsList = ({ comics, isComicsLoading }: IComicsListProps) => {
+  if (comics.length === 0 && !isComicsLoading)
     return (
       <Card>
         <p className={styles.comicsList__empty}>No comics found !</p>

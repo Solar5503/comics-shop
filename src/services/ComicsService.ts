@@ -19,6 +19,6 @@ export default class ComicsService {
       },
     })
 
-    return response.data.data.results
+    return response.data.data
   }
 }
