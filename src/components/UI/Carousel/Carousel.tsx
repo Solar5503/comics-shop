@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from 'react'
+import { useCallback, useEffect, useId, useState } from 'react'
 import { IImagesCarousel } from '../../../types/types'
 import styles from './Carousel.module.scss'
 import CarouselSlide from './CarouselSlide'
@@ -19,6 +19,7 @@ const Carousel = ({
   animationIteration = `infinite`,
 }: ICarouselProps) => {
   const [activeSlide, setActiveSlide] = useState<number>(firstSlide - 1)
+  const id = useId()
 
   const prevClickHandler = useCallback(() => {
     setActiveSlide((prev) =>
@@ -47,25 +48,29 @@ const Carousel = ({
         animationDuration: `${timeoutSlideSec * imagesCarousel.length}s`,
         animationIterationCount: animationIteration,
       }}
+      data-testid="carousel"
     >
       {imagesCarousel.map((image, index) => (
         <CarouselSlide
-          key={index}
+          key={id + index}
           image={image}
           idx={index}
           activeSlide={activeSlide}
           timeoutSec={timeoutSlideSec}
+          data-testid={`carousel-slide-` + index}
         />
       ))}
       <button
         className={`${styles.carousel__btn} ${styles['carousel__btn-prev']}`}
         onClick={prevClickHandler}
+        data-testid="carousel-btn-prev"
       >
         <i className={styles['carousel__btn-arrow-prev']} />
       </button>
       <button
         className={`${styles.carousel__btn} ${styles['carousel__btn-next']}`}
         onClick={nextClickHandler}
+        data-testid="carousel-btn-next"
       >
         <i className={styles['carousel__btn-arrow-next']} />
       </button>

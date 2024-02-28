@@ -1,5 +1,5 @@
 const MyComicsZone = () => {
-  return <div>MyComicsZone</div>
+  return <div data-testid="my-comics-zone-page">MyComicsZone</div>
 }
 
 export default MyComicsZone

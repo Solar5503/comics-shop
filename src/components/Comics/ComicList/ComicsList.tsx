@@ -12,15 +12,19 @@ const ComicsList = ({ comics, isComicsLoading }: IComicsListProps) => {
   if (comics.length === 0 && !isComicsLoading)
     return (
       <Card>
-        <p className={styles.comicsList__empty}>No comics found !</p>
+        <p className={styles.comicsList__empty} data-testid="comics-list-empty">
+          No comics found !
+        </p>
       </Card>
     )
 
   return (
     <div className={styles.comicsList}>
-      <h1 className={styles.comicsList__title}>Comics List</h1>
+      <h1 className={styles.comicsList__title} data-testid="comics-list-title">
+        Comics List
+      </h1>
       {comics.map((comic) => (
-        <ComicCard key={comic.id} comic={comic} />
+        <ComicCard key={comic.id} comic={comic} data-testid="comic-card" />
       ))}
     </div>
   )

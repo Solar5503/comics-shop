@@ -1,3 +1,4 @@
+import { ComponentProps } from 'react'
 import { NavLink } from 'react-router-dom'
 import { IImagesCarousel } from '../../../types/types'
 import styles from './CarouselSlide.module.scss'
@@ -7,12 +8,14 @@ interface ICarouselSlideProps {
   idx: number
   activeSlide: number
   timeoutSec: number
+  props?: ComponentProps<'div'>
 }
 const CarouselSlide = ({
   image,
   idx,
   activeSlide,
   timeoutSec,
+  ...props
 }: ICarouselSlideProps) => {
   const progressBarStyle = {
     animationDuration: `${timeoutSec}s`,
@@ -30,6 +33,7 @@ const CarouselSlide = ({
     <div
       className={styles.carousel__slide}
       style={{ transform: `translateX(${transformX}%)` }}
+      {...props}
     >
       <NavLink className={styles['carousel__link']} to={image.path}>
         <h1 className={styles['carousel__heading']}>{image.title}</h1>

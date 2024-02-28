@@ -36,7 +36,7 @@ const Select = function <T extends string | number>({
   return (
     <div className={classes} ref={wrapperRef}>
       <select
-        name="select"
+        name={`select-${defaultValue}`}
         className={styles.select}
         value={value}
         onChange={(e: React.ChangeEvent<HTMLSelectElement>) =>

@@ -69,6 +69,7 @@
     padding: 0;
     margin: 0;
     transition: all 0.3s ease-in-out;
+    grid-row: span 2;
   }
   &__button:hover {
     transform: scale(1.1);
@@ -82,9 +83,6 @@
     padding: 0.5rem;
   }
 
-  &__button {
-    grid-row: span 2;
-  }
   &__page {
     grid-column: 2;
     grid-row: 2;
