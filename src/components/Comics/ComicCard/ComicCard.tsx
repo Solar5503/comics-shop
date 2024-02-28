@@ -51,11 +51,12 @@ const ComicCard = ({ comic }: ComicCardProps) => {
     setIsComicAddingToCart(!isComicAddingToCart)
 
   return (
-    <article className={styles['comic-card']}>
+    <article className={styles['comic-card']} data-testid="comic-card">
       <div
         className={`${styles['comic-card__header']} ${
           formatColorStyle[format.replace(/ /g, '')]
         }`}
+        data-testid="format"
       >
         <p>{format}</p>
       </div>
@@ -67,14 +68,15 @@ const ComicCard = ({ comic }: ComicCardProps) => {
         loading="lazy"
         className={styles['comic-card__img']}
       />
-      <div className={styles['comic-card__title']}>
+      <div className={styles['comic-card__title']} data-testid="title">
         <h3>{title}</h3>
       </div>
       <div className={styles['comic-card__info']}>
         <button
           className={styles['comic-card__button']}
-          aria-label="Add to favorite"
+          aria-label={isFavorite ? 'Remove from favorite' : 'Add to favorite'}
           type="button"
+          name="Add to favorite"
           onClick={favoriteClickHandler}
         >
           <svg
@@ -99,8 +101,9 @@ const ComicCard = ({ comic }: ComicCardProps) => {
         )}
         <button
           className={styles['comic-card__button']}
-          aria-label="Add to cart"
+          aria-label={isComicAddingToCart ? 'Remove from cart' : 'Add to cart'}
           type="button"
+          name="Add to cart"
           onClick={addToCartClickHandler}
         >
           <svg
@@ -132,9 +135,12 @@ const ComicCard = ({ comic }: ComicCardProps) => {
           </svg>
         </button>
       </div>
-      <div className={styles['comic-card__description']}>
+      <div
+        className={styles['comic-card__description']}
+        data-testid="description"
+      >
         <h4 className={styles['comic-card__header']}>Description</h4>
-        <p>{descriptionFormatted ? descriptionFormatted : 'No description'}</p>
+        <p>{descriptionFormatted || 'No description'}</p>
         {onsaleDateFormatted !== 'Not on sale yet' && <p>On sale since</p>}
         <p className={styles['comic-card__date']}>{onsaleDateFormatted}</p>
       </div>

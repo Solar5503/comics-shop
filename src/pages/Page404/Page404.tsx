@@ -3,7 +3,7 @@ import styles from './Page404.module.scss'
 
 const Page404 = () => {
   return (
-    <Card className={styles.error404}>
+    <Card className={styles.error404} data-testid="page-404">
       <h1>💥 You have landed on a non-existent page ! 💥</h1>
       <img
         className={styles['error404__img']}

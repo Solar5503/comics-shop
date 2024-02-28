@@ -3,7 +3,7 @@ import { images } from '../components/UI/Carousel/images'
 
 const Home = () => {
   return (
-    <section>
+    <section data-testid="home-page">
       <Carousel imagesCarousel={images} />
     </section>
   )

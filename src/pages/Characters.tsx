@@ -1,5 +1,5 @@
 const Characters = () => {
-  return <div>Characters</div>
+  return <div data-testid="characters-page">Characters</div>
 }
 
 export default Characters

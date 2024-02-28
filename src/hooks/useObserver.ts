@@ -1,13 +1,11 @@
 import { MutableRefObject, useEffect, useRef } from 'react'
-interface IUseObserverFunc {
-  (
-    callback: () => void,
-    isLoading?: boolean,
-    canLoad?: boolean,
-    rootMargin?: IntersectionObserverInit['rootMargin'],
-    threshold?: IntersectionObserverInit['threshold']
-  ): MutableRefObject<null>
-}
+type TUseObserverFunc = (
+  callback: () => void,
+  isLoading?: boolean,
+  canLoad?: boolean,
+  rootMargin?: IntersectionObserverInit['rootMargin'],
+  threshold?: IntersectionObserverInit['threshold']
+) => MutableRefObject<null>
 
 /**
  * This is a custom hook for observing elements.
@@ -22,7 +20,7 @@ interface IUseObserverFunc {
  * - Setting a value of 1 means the entire element must be visible
  * @returns {MutableRefObject<null>}  A reference to the target element
  */
-export const useObserver: IUseObserverFunc = (
+export const useObserver: TUseObserverFunc = (
   callback,
   isLoading = false,
   canLoad = true,

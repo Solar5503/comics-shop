@@ -51,7 +51,7 @@ const Comics = () => {
     }))
 
     setComics((prev) =>
-      //remove duplicates
+      //remove duplicates from backend
       [...prev, ...comicsFromServer].filter(
         (el1, i, ar) => i === ar.findIndex((el2) => el2.id === el1.id)
       )
@@ -70,7 +70,7 @@ const Comics = () => {
   }, [fetchComics, limitComics, orderByDate, offsetComics])
 
   return (
-    <section>
+    <section data-testid="comics-page">
       {ComicsError && <Error error={ComicsError} />}
       <ComicFilter
         filter={{ limitComics, orderByDate, query, sort }}

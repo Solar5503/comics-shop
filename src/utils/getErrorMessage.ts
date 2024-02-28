@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-export const getErrorMessage = (error: unknown) => {
+export const getErrorMessage = (error: unknown): string => {
   if (axios.isAxiosError(error) && error.response)
     return error.response?.data.message
 

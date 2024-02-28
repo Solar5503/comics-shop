@@ -6,7 +6,12 @@ const Navbar = () => {
     <nav role="navigation" aria-label="main">
       <ul className={styles.navbar}>
         <li>
-          <NavLink className={styles['navbar__links']} to="/" aria-label="Home">
+          <NavLink
+            className={styles['navbar__links']}
+            to="/"
+            aria-label="Home"
+            data-testid="navbar-home"
+          >
             Home
           </NavLink>
         </li>
@@ -19,6 +24,7 @@ const Navbar = () => {
             }
             to="/comics"
             aria-label="Comics"
+            data-testid="navbar-comics"
           >
             Comics
           </NavLink>
@@ -32,6 +38,7 @@ const Navbar = () => {
             }
             to="/characters"
             aria-label="Characters"
+            data-testid="navbar-characters"
           >
             Characters
           </NavLink>
@@ -45,6 +52,7 @@ const Navbar = () => {
             }
             to="/my-comics-zone"
             aria-label="My comics zone"
+            data-testid="navbar-my-comics-zone"
           >
             My Comics Zone
           </NavLink>
