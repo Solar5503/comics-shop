@@ -28,7 +28,7 @@ const Comics = () => {
     'title'
   )
 
-  const [fetchComics, isComicsLoading, ComicsError] = useFetching<
+  const [fetchComics, isComicsLoading, comicsError] = useFetching<
     number,
     number,
     TOrderBy
@@ -41,7 +41,7 @@ const Comics = () => {
       id: comic.id,
       title: comic.title,
       price: comic.prices[0].price,
-      description: comic.description ?? comic.textObjects[0]?.text,
+      description: comic.description || comic.textObjects[0]?.text,
       thumbnail: !comic.thumbnail.path.includes('image_not_available')
         ? `${comic.thumbnail.path}.${comic.thumbnail.extension}`
         : `/images/no-image.jpg`,
@@ -71,12 +71,12 @@ const Comics = () => {
 
   return (
     <section data-testid="comics-page">
-      {ComicsError && <Error error={ComicsError} />}
+      {comicsError && <Error error={comicsError} />}
       <ComicFilter
         filter={{ limitComics, orderByDate, query, sort }}
         setFilter={setFilter}
       />
-      {!ComicsError && (
+      {!comicsError && (
         <ComicsList
           comics={sortedAndFilteredComics}
           isComicsLoading={isComicsLoading}

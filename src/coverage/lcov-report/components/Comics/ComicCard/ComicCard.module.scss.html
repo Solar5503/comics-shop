@@ -181,20 +181,18 @@
 <a name='L116'></a><a href='#L116'>116</a>
 <a name='L117'></a><a href='#L117'>117</a>
 <a name='L118'></a><a href='#L118'>118</a>
-<a name='L119'></a><a href='#L119'>119</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">4x</span>
+<a name='L119'></a><a href='#L119'>119</a>
+<a name='L120'></a><a href='#L120'>120</a>
+<a name='L121'></a><a href='#L121'>121</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">5x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">4x</span>
-<span class="cline-any cline-yes">4x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">4x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">150x</span>
-<span class="cline-any cline-yes">150x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">5x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">132x</span>
+<span class="cline-any cline-yes">132x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -203,7 +201,13 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -304,48 +308,62 @@
 }
 &nbsp;
 .comic-card {
-  border-radius: 1rem;
-  width: -webkit-min-content;
-  width: -moz-min-content;
-  width: min-con<span class="missing-if-branch" title="else path not taken" >E</span>tent;
-  text-align: center;
-  background-color: rgba(255, 34, 34, 0.6);
-  display: grid;<span class="cstat-no" title="statement not covered" ></span>
+  display: grid;
   grid-template-rows: -webkit-min-content -webkit-min-content 1fr -webkit-min-content;
   grid-template-rows: min-content min-content 1fr min-content;
-  box-shadow<span class="fstat-no" title="function not covered" >: </span>var(--secondary-box-shadow);
-  overflow: hidd<span class="cstat-no" title="statement not covered" >en;</span>
+  border-radius:<span class="missing-if-branch" title="else path not taken" >E</span> 1rem;
+  text-align: center;
+  background-color: rgba(255, 34, 34, 0.6);
+  box-shadow: va<span class="cstat-no" title="statement not covered" >r(--secondary-box-sha</span>dow);
+  overflow: hidden;
   position: relative;
-  cursor: pointer;
-  transitio<span class="missing-if-branch" title="else path not taken" >E</span>n: transform 0.3s ease-in-out;
-<span class="cstat-no" title="statement not covered" ></span>
+  transition<span class="fstat-no" title="function not covered" >: </span>transform 0.3s ease-in-out;
+  width: -webkit<span class="cstat-no" title="statement not covered" >-min-content;</span>
+  width: -moz-min-content;
+  width: min-content;
+<span class="missing-if-branch" title="else path not taken" >E</span>
+  &amp;__lin<span class="cstat-no" title="statement not covered" >k {</span>
+    text-decoration: none;
+    color: inherit;
+    posi<span class="cstat-no" title="statement not covered" >tion: absolute;</span>
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    z-index: 2;
+  }
+&nbsp;
   &amp;__header {
     @extend %border;
-  }<span class="cstat-no" title="statement not covered" ></span>
 &nbsp;
-  &amp;__header--comic {
-    background-color: red;
+    &amp;--comic {
+      background-color: var(--comic-color);
+    }
+    &amp;--trade-paperback {
+      background-color: var(--trade-paperback-color);
+    }
+    &amp;--digital-vertical-comic {
+      background-color: var(--digital-vertical-comic-color);
+    }
+    &amp;--hardcover {
+      background-color: var(--hardcover-color);
+    }
+    &amp;--digital-comic {
+      background-color: var(--digital-comic-color);
+    }
+    &amp;--digest {
+      background-color: var(--digest-color);
+    }
+    &amp;--catalog {
+      background-color: var(--catalog-color);
+    }
   }
-  &amp;__header--trade-paperback {
-    background-color: gold;
+  &amp;__format {
+    min-height: 2rem;
   }
-  &amp;__header--digital-vertical-comic {
-    background-color: dodgerblue;
-  }
-  &amp;__header--hardcover {
-    background-color: limegreen;
-  }
-  &amp;__header--digital-comic {
-    background-color: blueviolet;
-  }
-  &amp;__header--digest {
-    background-color: black;
-  }
-&nbsp;
   &amp;__header,
   &amp;__title,
-  &amp;__price,
-  &amp;__date {
+  &amp;__price {
     text-shadow: var(--primary-text-shadow);
   }
   &amp;__img {
@@ -363,21 +381,9 @@
     padding: 0.5rem;
   }
   &amp;__button {
-    background-color: transparent;
-    border: none;
-    outline: none;
-    cursor: pointer;
-    padding: 0;
-    margin: 0;
-    transition: all 0.3s ease-in-out;
     grid-row: span 2;
   }
-  &amp;__button:hover {
-    transform: scale(1.1);
-  }
-  &amp;__button:focus {
-    outline: none;
-  }
+&nbsp;
   &amp;__title {
     grid-column: 1/-1;
     align-self: baseline;
@@ -405,7 +411,7 @@
     overflow: hidden;
     display: -webkit-box;
     -webkit-box-orient: vertical;
-    -webkit-line-clamp: 8;
+    -webkit-line-clamp: 5;
     @extend %border;
     box-shadow: var(--secondary-box-shadow);
   }
@@ -424,7 +430,7 @@
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2024-02-28T14:53:13.526Z
+                at 2024-03-15T14:35:15.778Z
             </div>
         <script src="../../../prettify.js"></script>
         <script>

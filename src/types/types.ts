@@ -24,41 +24,72 @@ export type TComic = {
   onsaleDate: string
   pageCount: number
   format: string
+  series?: {
+    seriesId: string
+    name: string
+  }
+  creators?: Array<{
+    creatorId: string
+    name: string
+    role: string
+  }>
+  characters?: Array<{
+    characterId: string
+    name: string
+  }>
+}
+export interface ISeries {
+  id: number
+  name: string
+  description: string
+  comics: TComic[]
 }
 
 interface IResults {
   id: number
   title: string
   description: string
-  textObjects: [
-    {
-      type: string
-      text: string
-    }
-  ]
-  prices: [
-    {
-      type: string
-      price: number
-    }
-  ]
+  textObjects: Array<{
+    type: string
+    text: string
+  }>
+  prices: Array<{
+    type: string
+    price: number
+  }>
   thumbnail: {
     path: string
     extension: string
   }
-  dates: [
-    {
-      type: string
-      date: string
-    }
-  ]
+  dates: Array<{
+    type: string
+    date: string
+  }>
   pageCount: number
   format: string
+  series: {
+    name: string
+    resourceURI: string
+  }
+  creators: {
+    items: Array<{
+      name: string
+      resourceURI: string
+      role: string
+    }>
+  }
+  characters: {
+    items: Array<{
+      name: string
+      resourceURI: string
+    }>
+  }
 }
 
 export interface MarvelServerResponse {
   attributionText: string
   attributionHTML: string
+  etag: string
   code: number
   status: string
   copyright: string
@@ -69,7 +100,6 @@ export interface MarvelServerResponse {
     count: number
     results: IResults[]
   }
-  etag: string
 }
 
 export type TSortBy = 'title' | 'format' | 'price' | ''

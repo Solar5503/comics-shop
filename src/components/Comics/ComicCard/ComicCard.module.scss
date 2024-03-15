@@ -3,48 +3,62 @@
 }
 
 .comic-card {
-  border-radius: 1rem;
-  width: -webkit-min-content;
-  width: -moz-min-content;
-  width: min-content;
-  text-align: center;
-  background-color: rgba(255, 34, 34, 0.6);
   display: grid;
   grid-template-rows: -webkit-min-content -webkit-min-content 1fr -webkit-min-content;
   grid-template-rows: min-content min-content 1fr min-content;
+  border-radius: 1rem;
+  text-align: center;
+  background-color: rgba(255, 34, 34, 0.6);
   box-shadow: var(--secondary-box-shadow);
   overflow: hidden;
   position: relative;
-  cursor: pointer;
   transition: transform 0.3s ease-in-out;
+  width: -webkit-min-content;
+  width: -moz-min-content;
+  width: min-content;
+
+  &__link {
+    text-decoration: none;
+    color: inherit;
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    z-index: 2;
+  }
 
   &__header {
     @extend %border;
-  }
 
-  &__header--comic {
-    background-color: red;
+    &--comic {
+      background-color: var(--comic-color);
+    }
+    &--trade-paperback {
+      background-color: var(--trade-paperback-color);
+    }
+    &--digital-vertical-comic {
+      background-color: var(--digital-vertical-comic-color);
+    }
+    &--hardcover {
+      background-color: var(--hardcover-color);
+    }
+    &--digital-comic {
+      background-color: var(--digital-comic-color);
+    }
+    &--digest {
+      background-color: var(--digest-color);
+    }
+    &--catalog {
+      background-color: var(--catalog-color);
+    }
   }
-  &__header--trade-paperback {
-    background-color: gold;
+  &__format {
+    min-height: 2rem;
   }
-  &__header--digital-vertical-comic {
-    background-color: dodgerblue;
-  }
-  &__header--hardcover {
-    background-color: limegreen;
-  }
-  &__header--digital-comic {
-    background-color: blueviolet;
-  }
-  &__header--digest {
-    background-color: black;
-  }
-
   &__header,
   &__title,
-  &__price,
-  &__date {
+  &__price {
     text-shadow: var(--primary-text-shadow);
   }
   &__img {
@@ -62,21 +76,9 @@
     padding: 0.5rem;
   }
   &__button {
-    background-color: transparent;
-    border: none;
-    outline: none;
-    cursor: pointer;
-    padding: 0;
-    margin: 0;
-    transition: all 0.3s ease-in-out;
     grid-row: span 2;
   }
-  &__button:hover {
-    transform: scale(1.1);
-  }
-  &__button:focus {
-    outline: none;
-  }
+
   &__title {
     grid-column: 1/-1;
     align-self: baseline;
@@ -104,7 +106,7 @@
     overflow: hidden;
     display: -webkit-box;
     -webkit-box-orient: vertical;
-    -webkit-line-clamp: 8;
+    -webkit-line-clamp: 5;
     @extend %border;
     box-shadow: var(--secondary-box-shadow);
   }

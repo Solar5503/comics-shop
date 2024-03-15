@@ -11,43 +11,17 @@
   margin: 0 auto;
 
   &__btn {
-    background-color: black;
-    border: 1px solid white;
-    border-radius: 50%;
-    opacity: 0.3;
-    padding: clamp(0.5rem, 1vw, 1rem);
-    cursor: pointer;
-    min-width: clamp(0.5rem, 1vw, 1rem);
-    transition: all 0.3s ease-in-out;
     position: absolute;
     z-index: 2;
-  }
-  &__btn:hover {
-    opacity: 0.7;
-    transform: scale(1.1);
-  }
-  &__btn-prev {
-    top: 50%;
-    left: 1rem;
-  }
-  &__btn-next {
-    top: 50%;
-    right: 1rem;
-  }
 
-  &__btn-arrow-prev {
-    border: solid white;
-    border-width: 0 3px 3px 0;
-    display: inline-block;
-    padding: clamp(0.5rem, 1vw, 1rem);
-    transform: rotate(135deg);
-  }
-  &__btn-arrow-next {
-    border: solid white;
-    border-width: 0 3px 3px 0;
-    display: inline-block;
-    padding: clamp(0.5rem, 1vw, 1rem);
-    transform: rotate(-45deg);
+    &-prev {
+      top: 50%;
+      left: 1rem;
+    }
+    &-next {
+      top: 50%;
+      right: 1rem;
+    }
   }
 }
 
