@@ -1,6 +1,7 @@
 import '@testing-library/jest-dom'
-import { render, screen } from '@testing-library/react'
+import { screen } from '@testing-library/react'
 
+import renderWithRouter from '../../../test/helpers/renderWithRouter'
 import { TComic } from '../../../types/types'
 import ComicsList from './ComicsList'
 describe('Test ComicsList', () => {
@@ -17,7 +18,7 @@ describe('Test ComicsList', () => {
     },
   ]
   test('It should renders list of comics', () => {
-    render(<ComicsList comics={mockComics} isComicsLoading={false} />)
+    renderWithRouter(<ComicsList comics={mockComics} isComicsLoading={false} />)
     const title = screen.getByTestId('comics-list-title')
     const comicCard = screen.getByTestId('comic-card')
     const emptyList = screen.queryByTestId('comics-list-empty')
@@ -26,7 +27,7 @@ describe('Test ComicsList', () => {
     expect(emptyList).not.toBeInTheDocument()
   })
   test('It should renders empty list of comics', () => {
-    render(<ComicsList comics={[]} isComicsLoading={false} />)
+    renderWithRouter(<ComicsList comics={[]} isComicsLoading={false} />)
     const comicCard = screen.queryByTestId('comic-card')
     const emptyList = screen.getByTestId('comics-list-empty')
     expect(emptyList).toBeInTheDocument()

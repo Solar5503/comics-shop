@@ -44,7 +44,7 @@ const Select = function <T extends string | number>({
         }
       >
         <option value="" disabled>
-          {`-- ${defaultValue} --`}
+          {`---  ${defaultValue}  ---`}
         </option>
         {options.map((option) => (
           <option value={option.value} key={option.value}>

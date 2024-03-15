@@ -1,0 +1,71 @@
+.creators-list {
+  margin: 2rem;
+  margin-bottom: 0;
+  transform: skew(-10deg, -2deg);
+
+  &__header {
+    font-size: calc(1rem + 1vw);
+    text-shadow: var(--primary-text-shadow);
+    border-radius: 1rem;
+    padding: 0 0.5rem;
+    margin-bottom: 2rem;
+    text-align: center;
+
+    &--comic {
+      border-bottom: 0.3rem solid var(--comic-color);
+      border-top: 0.3rem solid var(--comic-color);
+    }
+    &--trade-paperback {
+      border-bottom: 0.3rem solid var(--trade-paperback-color);
+      border-top: 0.3rem solid var(--trade-paperback-color);
+    }
+    &--digital-vertical-comic {
+      border-bottom: 0.3rem solid var(--digital-vertical-comic-color);
+      border-top: 0.3rem solid var(--digital-vertical-comic-color);
+    }
+    &--hardcover {
+      border-bottom: 0.3rem solid var(--hardcover-color);
+      border-top: 0.3rem solid var(--hardcover-color);
+    }
+    &--digital-comic {
+      border-bottom: 0.3rem solid var(--digital-comic-color);
+      border-top: 0.3rem solid var(--digital-comic-color);
+    }
+    &--digest {
+      border-bottom: 0.3rem solid var(--digest-color);
+      border-top: 0.3rem solid var(--digest-color);
+    }
+    &--catalog {
+      border-bottom: 0.3rem solid var(--catalog-color);
+      border-top: 0.3rem solid var(--catalog-color);
+    }
+  }
+  &__listing {
+    font-size: calc(0.3rem + 1vw);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    -moz-column-gap: clamp(0.2rem, 1rem + 6vw, 7rem);
+    column-gap: clamp(0.2rem, 1rem + 6vw, 7rem);
+    list-style: none;
+    margin: 1rem 0.5rem;
+    opacity: 0.8;
+    padding: 2rem 3rem;
+    box-shadow: var(--primary-box-shadow);
+    position: relative;
+    border-radius: calc(1rem + 6vw);
+    text-align: center;
+
+    &::after {
+      position: absolute;
+      content: '';
+      width: calc(3rem + 1vw);
+      height: max(1rem, 2rem + 2vh);
+      -webkit-clip-path: polygon(0 0, 0% 100%, 100% 0);
+      clip-path: polygon(0 0, 0% 100%, 100% 0);
+      background-color: inherit;
+      transform: scaleX(1) skewX(-20deg);
+      left: 15%;
+      bottom: -10%;
+    }
+  }
+}

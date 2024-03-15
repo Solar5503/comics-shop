@@ -1,0 +1,171 @@
+.single-comic {
+  display: grid;
+  place-items: center;
+  grid-template-columns: 1fr 2fr;
+  -moz-column-gap: 1rem;
+  column-gap: 1rem;
+
+  &__title {
+    grid-column: 2/-1;
+    min-width: 90%;
+    text-align: center;
+    margin-bottom: 2.5rem;
+    -webkit-filter: brightness(0.9);
+    filter: brightness(0.9);
+    font-size: calc(0.5rem + 1.5vw);
+    border-radius: 1rem;
+    padding: 0.5rem;
+    border-bottom: 0.3rem solid var(--comic-color);
+    border-top: 0.3rem solid var(--comic-color);
+    box-shadow: var(--primary-box-shadow);
+
+    &--comic {
+      border-bottom: 0.3rem solid var(--comic-color);
+      border-top: 0.3rem solid var(--comic-color);
+    }
+    &--trade-paperback {
+      border-bottom: 0.3rem solid var(--trade-paperback-color);
+      border-top: 0.3rem solid var(--trade-paperback-color);
+    }
+    &--digital-vertical-comic {
+      border-bottom: 0.3rem solid var(--digital-vertical-comic-color);
+      border-top: 0.3rem solid var(--digital-vertical-comic-color);
+    }
+    &--hardcover {
+      border-bottom: 0.3rem solid var(--hardcover-color);
+      border-top: 0.3rem solid var(--hardcover-color);
+    }
+    &--digital-comic {
+      border-bottom: 0.3rem solid var(--digital-comic-color);
+      border-top: 0.3rem solid var(--digital-comic-color);
+    }
+    &--digest {
+      border-bottom: 0.3rem solid var(--digest-color);
+      border-top: 0.3rem solid var(--digest-color);
+    }
+    &--catalog {
+      border-bottom: 0.3rem solid var(--catalog-color);
+      border-top: 0.3rem solid var(--catalog-color);
+    }
+  }
+  &__wrapper-img {
+    grid-row: 1/8;
+    align-self: self-start;
+  }
+  &__img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 1rem;
+    -o-object-fit: cover;
+    object-fit: cover;
+    content-visibility: auto;
+    -webkit-filter: brightness(0.85);
+    filter: brightness(0.85);
+    border: 0.3rem solid black;
+    box-shadow: var(--secondary-box-shadow);
+  }
+  &__controls,
+  &__info {
+    display: flex;
+    min-width: 50%;
+    align-items: center;
+    margin-bottom: 4rem;
+  }
+  &__controls {
+    justify-content: space-between;
+    border-bottom: 1px solid var(--primary-color);
+    border-top: 1px solid var(--primary-color);
+  }
+  &__info {
+    flex-wrap: wrap;
+    justify-content: center;
+    font-size: calc(1rem + 1vw);
+    text-shadow: var(--primary-text-shadow);
+    margin: 2rem;
+    margin-top: 4rem;
+    -moz-column-gap: calc(1rem + 6vw);
+    column-gap: calc(1rem + 6vw);
+  }
+  &__price {
+    font-size: calc(1rem + 2vw);
+    text-shadow: var(--primary-text-shadow);
+    margin: 0 1.5rem;
+  }
+  &__description {
+    max-width: 90%;
+    background-color: rgba(0, 0, 0, 0.4);
+    font-size: calc(0.3rem + 1vw);
+    opacity: 0.8;
+    transform: skew(-10deg, 2deg);
+    padding: 0.5rem calc(1rem + 3vw);
+    box-shadow: var(--primary-box-shadow);
+    position: relative;
+    border-radius: calc(1rem + 6vw);
+
+    &::after {
+      position: absolute;
+      content: '';
+      width: calc(3rem + 1vw);
+      height: calc(2rem + 1%);
+      right: 20%;
+      -webkit-clip-path: polygon(0 0, 0% 100%, 100% 0);
+      clip-path: polygon(0 0, 0% 100%, 100% 0);
+      transform: scaleX(-1) skewX(-20deg);
+      background-color: inherit;
+    }
+  }
+  &__series-link {
+    display: block;
+    text-decoration: none;
+    margin-bottom: 2.5rem;
+    color: var(--secondary-color);
+    text-shadow: var(--primary-text-shadow);
+    font-size: calc(0.5rem + 1vw);
+
+    &:hover {
+      color: white;
+      transition: color 0.7s ease-in-out;
+    }
+  }
+  &__subtitle {
+    text-align: center;
+    color: var(--primary-color);
+    font-size: calc(0.3rem + 1.5vw);
+  }
+
+  &__creators {
+    grid-row: 9/9;
+    grid-column: span 2;
+    justify-self: start;
+  }
+  &__characters {
+    grid-row: 10/10;
+    grid-column: span 2;
+    justify-self: end;
+  }
+
+  &__btn {
+    margin: clamp(1rem, 5vw, 2rem);
+    position: relative;
+
+    &:hover::after {
+      opacity: 1;
+    }
+
+    &::after {
+      position: absolute;
+      font-size: clamp(0.3rem, 0.3rem + 1vw, 0.8rem);
+      content: attr(data-btn);
+      color: white;
+      top: 130%;
+      left: 50%;
+      transform: translateX(-50%);
+      min-width: 200%;
+      opacity: 0;
+      transition: opacity 0.6s ease-in-out;
+    }
+  }
+  &__wrapper-btn {
+    display: flex;
+  }
+}

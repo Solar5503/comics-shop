@@ -1,0 +1,17 @@
+.favorite-button {
+  background-color: transparent;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 0;
+  margin: 0;
+  transition: all 0.3s ease-in-out;
+  z-index: 3;
+
+  &:hover {
+    transform: scale(1.1);
+  }
+  &:focus {
+    outline: none;
+  }
+}

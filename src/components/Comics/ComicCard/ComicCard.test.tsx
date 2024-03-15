@@ -1,7 +1,8 @@
 import '@testing-library/jest-dom'
-import { render, screen } from '@testing-library/react'
+import { screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 
+import renderWithRouter from '../../../test/helpers/renderWithRouter'
 import { TComic } from '../../../types/types'
 import ComicCard from './ComicCard'
 import styles from './ComicCard.module.scss'
@@ -20,7 +21,7 @@ describe('Test ComicCard', () => {
   const user = userEvent.setup()
 
   test('It should renders comic card with correct data', () => {
-    render(<ComicCard comic={mockComic} />)
+    renderWithRouter(<ComicCard comic={mockComic} />)
     const comicCard = screen.getByTestId('comic-card')
     const format = screen.getByTestId('format')
     const img = screen.getByRole('img', {
@@ -29,9 +30,12 @@ describe('Test ComicCard', () => {
     const title = screen.getByTestId('title')
     const favoriteBtn = screen.getByRole('button', { name: /Add to Favorite/i })
     const price = screen.getByText('$9.99')
-    const page = screen.getByText(/Page 100/i)
+    const page = screen.getByText(/Pages 100/i)
     const cartBtn = screen.getByRole('button', { name: /Add to cart/i })
     const description = screen.getByTestId('description')
+    const linkToSingleComicPage = screen.getByTestId(
+      'link-to-single-comic-page'
+    )
 
     expect(comicCard).toHaveClass(styles['comic-card'])
     expect(format).toHaveClass(
@@ -45,10 +49,11 @@ describe('Test ComicCard', () => {
     expect(page).toHaveClass(styles['comic-card__page'])
     expect(cartBtn).toHaveClass(styles['comic-card__button'])
     expect(description).toHaveTextContent('Test description')
+    expect(linkToSingleComicPage).toBeInTheDocument()
   })
 
   test('It should adds and removes from favorite when favorite button is clicked', async () => {
-    render(<ComicCard comic={mockComic} />)
+    renderWithRouter(<ComicCard comic={mockComic} />)
     const favoriteBtn = screen.getByRole('button', { name: /Add to Favorite/i })
     await user.click(favoriteBtn)
     expect(favoriteBtn).toHaveAttribute('aria-label', 'Remove from favorite')
@@ -57,11 +62,19 @@ describe('Test ComicCard', () => {
   })
 
   test('It should adds and removes from cart when addToCart button is clicked', async () => {
-    render(<ComicCard comic={mockComic} />)
+    renderWithRouter(<ComicCard comic={mockComic} />)
     const cartBtn = screen.getByRole('button', { name: /Add to cart/i })
     await user.click(cartBtn)
     expect(cartBtn).toHaveAttribute('aria-label', 'Remove from cart')
     await user.click(cartBtn)
     expect(cartBtn).toHaveAttribute('aria-label', 'Add to cart')
+  })
+  test('It should redirect to single comic page when link is clicked', async () => {
+    renderWithRouter(<ComicCard comic={mockComic} />)
+    const linkToSingleComicPage = screen.getByTestId(
+      'link-to-single-comic-page'
+    )
+    await user.click(linkToSingleComicPage)
+    expect(screen.getByTestId('single-comic-page')).toBeInTheDocument()
   })
 })

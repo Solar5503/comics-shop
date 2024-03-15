@@ -21,4 +21,44 @@ export default class ComicsService {
 
     return response.data.data
   }
+  static async getComicById(comicId: string) {
+    const response = await axios.get<MarvelServerResponse>(
+      `/comics/${comicId}`,
+      {
+        baseURL: MARVEL_URL,
+        params: {
+          apikey: import.meta.env.VITE_PUBLIC_API_KEY,
+        },
+      }
+    )
+    return response.data.data.results
+  }
+
+  static async getAllComicsBySeriesId(seriesId: string) {
+    const response = await axios.get<MarvelServerResponse>(
+      `/series/${seriesId}/comics`,
+      {
+        baseURL: MARVEL_URL,
+        params: {
+          apikey: import.meta.env.VITE_PUBLIC_API_KEY,
+          limit: 100,
+          orderBy: 'onsaleDate',
+          noVariants: true,
+        },
+      }
+    )
+    return response.data.data.results
+  }
+  static async getCharacterById(characterId: string) {
+    const response = await axios.get<MarvelServerResponse>(
+      `/characters/${characterId}`,
+      {
+        baseURL: MARVEL_URL,
+        params: {
+          apikey: import.meta.env.VITE_PUBLIC_API_KEY,
+        },
+      }
+    )
+    return response.data.data.results
+  }
 }

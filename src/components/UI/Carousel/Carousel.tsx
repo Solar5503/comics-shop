@@ -1,5 +1,7 @@
 import { useCallback, useEffect, useId, useState } from 'react'
 import { IImagesCarousel } from '../../../types/types'
+import NextButton from '../NextButton/NextButton'
+import PrevButton from '../PrevButton/PrevButton'
 import styles from './Carousel.module.scss'
 import CarouselSlide from './CarouselSlide'
 
@@ -60,20 +62,16 @@ const Carousel = ({
           data-testid={`carousel-slide-` + index}
         />
       ))}
-      <button
+      <PrevButton
         className={`${styles.carousel__btn} ${styles['carousel__btn-prev']}`}
         onClick={prevClickHandler}
         data-testid="carousel-btn-prev"
-      >
-        <i className={styles['carousel__btn-arrow-prev']} />
-      </button>
-      <button
+      />
+      <NextButton
         className={`${styles.carousel__btn} ${styles['carousel__btn-next']}`}
         onClick={nextClickHandler}
         data-testid="carousel-btn-next"
-      >
-        <i className={styles['carousel__btn-arrow-next']} />
-      </button>
+      />
     </div>
   )
 }
