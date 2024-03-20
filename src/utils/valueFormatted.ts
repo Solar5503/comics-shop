@@ -8,7 +8,7 @@ export const onsaleDateFormatted = (date: string) =>
       })
     : 'Not on sale yet'
 
-export const priceFormatted = (price: number) =>
+export const priceFormatted = (price: number = 0) =>
   price === 0
     ? 'Free'
     : new Intl.NumberFormat('en-US', {

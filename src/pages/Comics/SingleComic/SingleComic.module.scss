@@ -63,6 +63,7 @@
     filter: brightness(0.85);
     border: 0.3rem solid black;
     box-shadow: var(--secondary-box-shadow);
+    animation: anime-img 3s linear forwards;
   }
   &__controls,
   &__info {
@@ -101,6 +102,7 @@
     box-shadow: var(--primary-box-shadow);
     position: relative;
     border-radius: calc(1rem + 6vw);
+    animation: anime-description 3s linear forwards;
 
     &::after {
       position: absolute;
@@ -137,11 +139,15 @@
     grid-row: 9/9;
     grid-column: span 2;
     justify-self: start;
+    visibility: hidden;
+    animation: anime-creators 3s ease-in-out 2s forwards;
   }
   &__characters {
     grid-row: 10/10;
     grid-column: span 2;
     justify-self: end;
+    visibility: hidden;
+    animation: anime-characters 3s ease-in-out 4s forwards;
   }
 
   &__btn {
@@ -167,5 +173,91 @@
   }
   &__wrapper-btn {
     display: flex;
+  }
+}
+
+@keyframes anime-img {
+  0% {
+    width: 1%;
+    height: 1%;
+    transform: rotateZ(0);
+    opacity: 0;
+    border-radius: 50%;
+  }
+  25% {
+    width: 25%;
+    height: 25%;
+    transform: rotateZ(-10deg);
+    opacity: 0.4;
+    border-radius: 50%;
+  }
+  50% {
+    width: 50%;
+    height: auto;
+    transform: rotateZ(10deg) scaleX(-1);
+    opacity: 0.6;
+    filter: grayscale(1);
+  }
+  75% {
+    transform: rotateZ(-5deg);
+    opacity: 0.8;
+  }
+  100% {
+    max-width: 100%;
+    height: auto;
+    transform: rotateZ(0) scaleX(1);
+    opacity: 1;
+    filter: grayscale(0);
+  }
+}
+
+@keyframes anime-creators {
+  0% {
+    transform: translateX(-100vw);
+    opacity: 0;
+  }
+  50% {
+    transform: scaleX(-1);
+    opacity: 0.5;
+    filter: grayscale(1);
+  }
+  100% {
+    transform: translateX(0) skew(-10deg, -2deg) scaleX(1);
+    opacity: 1;
+    filter: grayscale(0);
+    visibility: visible;
+  }
+}
+@keyframes anime-characters {
+  0% {
+    transform: translateX(100vw);
+    opacity: 0;
+  }
+  50% {
+    transform: scaleX(-1);
+    filter: grayscale(1);
+    opacity: 0.5;
+  }
+  100% {
+    transform: translateX(0) skew(-10deg, 2deg) scaleX(1);
+    filter: grayscale(0);
+    opacity: 1;
+    visibility: visible;
+  }
+}
+@keyframes anime-description {
+  0% {
+    transform: scaleX(0);
+    opacity: 0;
+  }
+  50% {
+    transform: scaleX(-1);
+    filter: grayscale(1);
+    opacity: 0.5;
+  }
+  100% {
+    filter: grayscale(0);
+    transform: scaleX(1) skew(-10deg, 2deg);
+    opacity: 1;
   }
 }

@@ -66,11 +66,13 @@ const Carousel = ({
         className={`${styles.carousel__btn} ${styles['carousel__btn-prev']}`}
         onClick={prevClickHandler}
         data-testid="carousel-btn-prev"
+        aria-label="Previous slide"
       />
       <NextButton
         className={`${styles.carousel__btn} ${styles['carousel__btn-next']}`}
         onClick={nextClickHandler}
         data-testid="carousel-btn-next"
+        aria-label="Next slide"
       />
     </div>
   )

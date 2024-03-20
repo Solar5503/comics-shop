@@ -6,9 +6,14 @@ import styles from './ComicsList.module.scss'
 interface IComicsListProps {
   comics: TComic[]
   isComicsLoading: boolean
+  title?: string
 }
 
-const ComicsList = ({ comics, isComicsLoading }: IComicsListProps) => {
+const ComicsList = ({
+  comics,
+  isComicsLoading,
+  title = 'Comics List',
+}: IComicsListProps) => {
   if (comics.length === 0 && !isComicsLoading)
     return (
       <Card>
@@ -20,9 +25,14 @@ const ComicsList = ({ comics, isComicsLoading }: IComicsListProps) => {
 
   return (
     <div className={styles.comicsList}>
-      <h1 className={styles.comicsList__title} data-testid="comics-list-title">
-        Comics List
-      </h1>
+      {title && (
+        <h2
+          className={styles.comicsList__title}
+          data-testid="comics-list-title"
+        >
+          {title}
+        </h2>
+      )}
       {comics.map((comic) => (
         <ComicCard key={comic.id} comic={comic} data-testid="comic-card" />
       ))}
