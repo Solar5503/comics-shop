@@ -1,0 +1,9 @@
+.card {
+  text-align: center;
+  margin-bottom: 2rem;
+  &__title {
+    color: var(--primary-color);
+    text-shadow: var(--primary-text-shadow);
+    font-size: calc(1rem + 2vw);
+  }
+}

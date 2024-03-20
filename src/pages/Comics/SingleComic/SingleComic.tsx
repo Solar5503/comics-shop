@@ -74,17 +74,13 @@ const SingleComic = () => {
           id: comic.id,
           title: comic.title,
           format: comic.format,
-          price: comicsBySeriesResponse[0].prices[0].price,
-          description:
-            comicsBySeriesResponse[0].description ||
-            comicsBySeriesResponse[0].textObjects[0]?.text,
-          thumbnail: !comicsBySeriesResponse[0].thumbnail.path.includes(
-            'image_not_available'
-          )
-            ? `${comicsBySeriesResponse[0].thumbnail.path}.${comicsBySeriesResponse[0].thumbnail.extension}`
+          price: comic.prices[0].price,
+          description: comic.description || comic.textObjects[0]?.text,
+          thumbnail: !comic.thumbnail.path.includes('image_not_available')
+            ? `${comic.thumbnail.path}.${comic.thumbnail.extension}`
             : `/images/no-image.jpg`,
-          onsaleDate: comicsBySeriesResponse[0].dates[0].date,
-          pageCount: comicsBySeriesResponse[0].pageCount,
+          onsaleDate: comic.dates[0].date,
+          pageCount: comic.pageCount,
         })
       )
 
@@ -184,16 +180,18 @@ const SingleComic = () => {
               }
             />
           </div>
-          <div
-            className={styles['single-comic__description']}
-            style={{
-              backgroundColor: format
-                ? `var(--${format?.replace(/ /g, '-').toLowerCase()}-color)`
-                : 'var(--primary-color)',
-            }}
-          >
-            <p>{descriptionFormatted(description)}</p>
-          </div>
+          {description && (
+            <div
+              className={styles['single-comic__description']}
+              style={{
+                backgroundColor: format
+                  ? `var(--${format?.replace(/ /g, '-').toLowerCase()}-color)`
+                  : 'var(--primary-color)',
+              }}
+            >
+              <p>{descriptionFormatted(description)}</p>
+            </div>
+          )}
           <div className={styles['single-comic__info']}>
             {onsaleDateFormatted(onsaleDate) !== 'Not on sale yet' && (
               <p>On sale since</p>
@@ -218,6 +216,7 @@ const SingleComic = () => {
                   ?.title
               }
               stylesForArrow={stylesForArrowObj}
+              aria-label="Previous comic"
             />
             <NextButton
               onClick={nextClickHandler}
@@ -227,6 +226,7 @@ const SingleComic = () => {
                   ?.title
               }
               stylesForArrow={stylesForArrowObj}
+              aria-label="Next comic"
             />
           </div>
         </Card>
