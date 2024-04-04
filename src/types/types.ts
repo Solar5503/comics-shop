@@ -24,6 +24,7 @@ export type TComic = {
   onsaleDate: string
   pageCount: number
   format: string
+  orderBy?: TOrderBy
   series?: {
     seriesId: string
     name: string
@@ -45,7 +46,7 @@ export interface ISeries {
   comics: TComic[]
 }
 
-interface IResults {
+export interface IComicResults {
   id: number
   title: string
   description: string
@@ -86,7 +87,7 @@ interface IResults {
   }
 }
 
-export interface MarvelServerResponse {
+export interface IMarvelServerResponse<T = IComicResults> {
   attributionText: string
   attributionHTML: string
   etag: string
@@ -98,15 +99,90 @@ export interface MarvelServerResponse {
     limit: number
     total: number
     count: number
-    results: IResults[]
+    results: T[]
   }
 }
 
-export type TSortBy = 'title' | 'format' | 'price' | ''
+export type TSortComicBy = 'title' | 'format' | 'price' | ''
 
-export interface IFilter {
-  sort: TSortBy
+export interface IComicFilter {
+  sort: TSortComicBy
   query: string
   limitComics: number
   orderByDate: TOrderBy
+}
+
+export type TCharacter = {
+  id: number
+  name: string
+  description?: string
+  thumbnail: string
+  comics: Array<{
+    comicId: number
+    name: string
+  }>
+  series: Array<{
+    seriesId: number
+    name: string
+  }>
+  orderBy?: TOrderCharacterBy
+}
+
+export type TOrderCharacterBy = 'name' | '-name' | 'modified' | '-modified'
+
+export interface ICharacterFilter {
+  orderBy: TOrderCharacterBy
+  query: string
+  limitCharacters: number
+}
+
+export interface ICharacterResults {
+  id: number
+  name: string
+  description: string
+  thumbnail: {
+    path: string
+    extension: string
+  }
+  comics: {
+    available: number
+    collectionURI: string
+    items: Array<{
+      name: string
+      resourceURI: string
+    }>
+    returned: number
+  }
+  series: {
+    available: number
+    collectionURI: string
+    items: Array<{
+      name: string
+      resourceURI: string
+    }>
+    returned: number
+  }
+  stories: {
+    available: number
+    collectionURI: string
+    items: Array<{
+      name: string
+      resourceURI: string
+      type: string
+    }>
+    returned: number
+  }
+  events?: {
+    available: number
+    collectionURI: string
+    items: Array<{
+      name: string
+      resourceURI: string
+    }>
+    returned: number
+  }
+  urls: Array<{
+    type: string
+    url: string
+  }>
 }

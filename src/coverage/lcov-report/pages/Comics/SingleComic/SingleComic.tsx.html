@@ -30,9 +30,9 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">45.16% </span>
+                <span class="strong">42.42% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>14/31</span>
+                <span class='fraction'>14/33</span>
             </div>
         
             
@@ -301,33 +301,33 @@
 <a name='L236'></a><a href='#L236'>236</a>
 <a name='L237'></a><a href='#L237'>237</a>
 <a name='L238'></a><a href='#L238'>238</a>
-<a name='L239'></a><a href='#L239'>239</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">5x</span>
-<span class="cline-any cline-yes">5x</span>
-<span class="cline-any cline-yes">5x</span>
-<span class="cline-any cline-yes">5x</span>
-<span class="cline-any cline-yes">5x</span>
-<span class="cline-any cline-yes">5x</span>
-<span class="cline-any cline-yes">5x</span>
-<span class="cline-any cline-yes">5x</span>
-<span class="cline-any cline-yes">5x</span>
-<span class="cline-any cline-yes">5x</span>
-<span class="cline-any cline-yes">5x</span>
-<span class="cline-any cline-yes">5x</span>
-<span class="cline-any cline-yes">5x</span>
+<a name='L239'></a><a href='#L239'>239</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">7x</span>
+<span class="cline-any cline-yes">7x</span>
+<span class="cline-any cline-yes">7x</span>
+<span class="cline-any cline-yes">7x</span>
+<span class="cline-any cline-yes">7x</span>
+<span class="cline-any cline-yes">7x</span>
+<span class="cline-any cline-yes">7x</span>
+<span class="cline-any cline-yes">7x</span>
+<span class="cline-any cline-yes">7x</span>
+<span class="cline-any cline-yes">7x</span>
+<span class="cline-any cline-yes">7x</span>
+<span class="cline-any cline-yes">7x</span>
+<span class="cline-any cline-yes">7x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">5x</span>
-<span class="cline-any cline-yes">5x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">7x</span>
+<span class="cline-any cline-yes">7x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">7x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">7x</span>
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-yes">2x</span>
@@ -374,10 +374,6 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -538,7 +534,11 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">7x</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { useEffect, useState } from 'react'
 import { Link, useNavigate, useParams } from 'react-router-dom'
 import CharactersSmallList from '../../../components/Characters/CharactersSmallList/CharactersSmallList'
@@ -585,7 +585,7 @@ const SingleComic = () =&gt; {
           'image_not_available'
         )
           ? `${comicResponse[0].thumbnail.path}.${comicResponse[0].thumbnail.extension}`
-          : `/images/no-image.jpg`,
+          : `/images/no-comic.webp`,
         onsaleDate: comicResponse[0].dates[0].date,
         pageCount: comicResponse[0].pageCount,
         format: comicResponse[0].format,
@@ -615,17 +615,13 @@ const SingleComic = () =&gt; {
           id: comic.id,
           title: comic.title,
           format: comic.format,
-          price: comicsBySeriesResponse[0].prices[0].price,
-          description:
-            comicsBySeriesResponse[0].description ||
-            comicsBySeriesResponse[0].textObjects[0]?.text,
-          thumbnail: !comicsBySeriesResponse[0].thumbnail.path.includes(
-            'image_not_available'
-          )
-            ? `${comicsBySeriesResponse[0].thumbnail.path}.${comicsBySeriesResponse[0].thumbnail.extension}`
-            : `/images/no-image.jpg`,
-          onsaleDate: comicsBySeriesResponse[0].dates[0].date,
-          pageCount: comicsBySeriesResponse[0].pageCount,
+          price: comic.prices[0].price,
+          description: comic.description || comic.textObjects[0]?.text,
+          thumbnail: !comic.thumbnail.path.includes('image_not_available')
+            ? `${comic.thumbnail.path}.${comic.thumbnail.extension}`
+            : `/images/no-comic.webp`,
+          onsaleDate: comic.dates[0].date,
+          pageCount: comic.pageCount,
         })
       )
 &nbsp;
@@ -725,16 +721,18 @@ const SingleComic = () =&gt; {
               }
             /&gt;
           &lt;/div&gt;
-          &lt;div
-            className={styles['single-comic__description']}
-            style={{
-              backgroundColor: format
-                ? <span class="branch-0 cbranch-no" title="branch not covered" >`var(--${format?.replace(/ /g, '-').toLowerCase()}-color)`</span>
-                : 'var(--primary-color)',
-            }}
-          &gt;
-            &lt;p&gt;{descriptionFormatted(description)}&lt;/p&gt;
-          &lt;/div&gt;
+          {description &amp;&amp; (
+<span class="branch-1 cbranch-no" title="branch not covered" >            &lt;div</span>
+              className={styles['single-comic__description']}
+              style={{
+                backgroundColor: format
+                  ? `var(--${format?.replace(/ /g, '-').toLowerCase()}-color)`
+                  : 'var(--primary-color)',
+              }}
+            &gt;
+              &lt;p&gt;{descriptionFormatted(description)}&lt;/p&gt;
+            &lt;/div&gt;
+          )}
           &lt;div className={styles['single-comic__info']}&gt;
             {onsaleDateFormatted(onsaleDate) !== 'Not on sale yet' &amp;&amp; (
 <span class="branch-1 cbranch-no" title="branch not covered" >              &lt;p&gt;On sale since&lt;/p&gt;</span>
@@ -759,6 +757,7 @@ const SingleComic = () =&gt; {
                   ?.title
               }
               stylesForArrow={stylesForArrowObj}
+              aria-label="Previous comic"
             /&gt;
             &lt;NextButton
               onClick={nextClickHandler}
@@ -768,6 +767,7 @@ const SingleComic = () =&gt; {
                   ?.title
               }
               stylesForArrow={stylesForArrowObj}
+              aria-label="Next comic"
             /&gt;
           &lt;/div&gt;
         &lt;/Card&gt;
@@ -784,7 +784,7 @@ export default SingleComic
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2024-03-15T14:35:15.778Z
+                at 2024-04-04T21:05:18.111Z
             </div>
         <script src="../../../prettify.js"></script>
         <script>

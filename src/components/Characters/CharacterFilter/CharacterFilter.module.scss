@@ -1,0 +1,15 @@
+.character-filter {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 1rem;
+
+  &__input {
+    background-image: url('/search/search.svg');
+    background-repeat: no-repeat;
+    background-position: 0.5rem;
+    padding-left: 3rem;
+    width: 40%;
+    margin-left: auto;
+  }
+}

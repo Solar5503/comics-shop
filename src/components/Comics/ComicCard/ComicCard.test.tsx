@@ -17,6 +17,7 @@ describe('Test ComicCard', () => {
     onsaleDate: '2024-01-01',
     pageCount: 100,
     format: 'Hardcover',
+    orderBy: '-focDate',
   }
   const user = userEvent.setup()
 

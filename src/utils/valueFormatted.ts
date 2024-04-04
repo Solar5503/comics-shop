@@ -1,3 +1,5 @@
+import { ICharacterResults, TOrderCharacterBy } from '../types/types'
+
 const dateNow = new Date()
 export const onsaleDateFormatted = (date: string) =>
   dateNow >= new Date(date)
@@ -40,4 +42,27 @@ export const formatColorStyle = (
   )
 
   return stylesObject[format?.replace(/ /g, '')]
+}
+
+export const charactersFormatted = function (
+  characters: ICharacterResults[],
+  orderBy?: TOrderCharacterBy
+) {
+  return characters.map((character) => ({
+    id: character.id,
+    name: character.name,
+    description: character.description,
+    thumbnail: !character.thumbnail.path.includes('image_not_available')
+      ? `${character.thumbnail.path}.${character.thumbnail.extension}`
+      : '/images/no-character.webp',
+    comics: character.comics.items.map((comic) => ({
+      comicId: Number(comic.resourceURI.match(/\d+$/)?.[0] || 0),
+      name: comic.name,
+    })),
+    series: character.series.items.map((series) => ({
+      seriesId: Number(series.resourceURI.match(/\d+$/)?.[0] || 0),
+      name: series.name,
+    })),
+    orderBy: orderBy ?? 'name',
+  }))
 }
