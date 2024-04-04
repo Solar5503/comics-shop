@@ -3,17 +3,18 @@ import { act, fireEvent, render, renderHook } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { useState } from 'react'
 
-import { IFilter } from '../../../types/types'
+import { IComicFilter } from '../../../types/types'
 import ComicFilter from './ComicFilter'
 
 describe('Test ComicFilter', () => {
-  const filterMock: IFilter = {
+  const filterMock: IComicFilter = {
     limitComics: 70,
     sort: 'title',
     query: '',
     orderByDate: '-focDate',
   }
   const user = userEvent.setup()
+  const mockSetOffsetComics = jest.fn()
 
   test('Select component for limiting comics count updates the filter state correctly', async () => {
     const { result } = renderHook(() => {
@@ -25,6 +26,7 @@ describe('Test ComicFilter', () => {
         <ComicFilter
           filter={result.current.filter}
           setFilter={result.current.setFilter}
+          setOffset={mockSetOffsetComics}
         />
       )
     )
@@ -45,6 +47,7 @@ describe('Test ComicFilter', () => {
         <ComicFilter
           filter={result.current.filter}
           setFilter={result.current.setFilter}
+          setOffset={mockSetOffsetComics}
         />
       )
     )
@@ -64,6 +67,7 @@ describe('Test ComicFilter', () => {
         <ComicFilter
           filter={result.current.filter}
           setFilter={result.current.setFilter}
+          setOffset={mockSetOffsetComics}
         />
       )
     )
@@ -73,22 +77,29 @@ describe('Test ComicFilter', () => {
       ...filterMock,
       orderByDate: 'onsaleDate',
     })
+    expect(mockSetOffsetComics).toHaveBeenCalledTimes(1)
+    expect(mockSetOffsetComics).toHaveBeenCalledWith(0)
     await user.selectOptions(select, 'Modified Date ⬇')
     expect(result.current.filter).toEqual({
       ...filterMock,
       orderByDate: '-modified',
     })
+    expect(mockSetOffsetComics).toHaveBeenCalledWith(0)
   })
-  test('Input component for search comics updates the filter state correctly', async () => {
+  test('Input component for search comics updates the filter state correctly', () => {
     const prevState = filterMock
     let nextState
     const setFilterMock = jest.fn((callback) => {
       nextState = callback(prevState)
     })
     const { getByPlaceholderText } = render(
-      <ComicFilter filter={filterMock} setFilter={setFilterMock} />
+      <ComicFilter
+        filter={filterMock}
+        setFilter={setFilterMock}
+        setOffset={mockSetOffsetComics}
+      />
     )
-    const input = getByPlaceholderText(/Search Comics.../i)
+    const input = getByPlaceholderText(/Quick Search Comics.../i)
     expect(input).toHaveValue('')
     fireEvent.change(input, { target: { value: 'hulk' } })
     expect(setFilterMock).toHaveBeenCalledTimes(1)

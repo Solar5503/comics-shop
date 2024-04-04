@@ -23,16 +23,16 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">69.69% </span>
+                <span class="strong">64.7% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>23/33</span>
+                <span class='fraction'>22/34</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">50% </span>
+                <span class="strong">40% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>6/12</span>
+                <span class='fraction'>6/15</span>
             </div>
         
             
@@ -44,9 +44,9 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">76.66% </span>
+                <span class="strong">73.33% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>23/30</span>
+                <span class='fraction'>22/30</span>
             </div>
         
             
@@ -154,19 +154,22 @@
 <a name='L89'></a><a href='#L89'>89</a>
 <a name='L90'></a><a href='#L90'>90</a>
 <a name='L91'></a><a href='#L91'>91</a>
-<a name='L92'></a><a href='#L92'>92</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">5x</span>
-<span class="cline-any cline-yes">5x</span>
-<span class="cline-any cline-yes">5x</span>
-<span class="cline-any cline-yes">5x</span>
-<span class="cline-any cline-yes">5x</span>
-<span class="cline-any cline-yes">5x</span>
-<span class="cline-any cline-yes">5x</span>
-<span class="cline-any cline-yes">5x</span>
-<span class="cline-any cline-yes">5x</span>
+<a name='L92'></a><a href='#L92'>92</a>
+<a name='L93'></a><a href='#L93'>93</a>
+<a name='L94'></a><a href='#L94'>94</a>
+<a name='L95'></a><a href='#L95'>95</a>
+<a name='L96'></a><a href='#L96'>96</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">7x</span>
+<span class="cline-any cline-yes">7x</span>
+<span class="cline-any cline-yes">7x</span>
+<span class="cline-any cline-yes">7x</span>
+<span class="cline-any cline-yes">7x</span>
+<span class="cline-any cline-yes">7x</span>
+<span class="cline-any cline-yes">7x</span>
+<span class="cline-any cline-yes">7x</span>
+<span class="cline-any cline-yes">7x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">5x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">7x</span>
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-yes">2x</span>
@@ -206,7 +209,11 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -244,7 +251,8 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">7x</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { useEffect, useState } from 'react'
 import ComicFilter from '../../components/Comics/ComicFilter/ComicFilter'
 import ComicsList from '../../components/Comics/ComicList/ComicsList'
@@ -254,15 +262,14 @@ import { useFetching } from '../../hooks/useFetching'
 import { useObserver } from '../../hooks/useObserver'
 import { useSortingAndSearching } from '../../hooks/useSortingAndSearching'
 import ComicsService from '../../services/ComicsService'
-import { IFilter, TComic, TOrderBy } from '../../types/types'
-import { getTotalCount } from '../../utils/getTotalCount'
+import { IComicFilter, TComic, TOrderBy } from '../../types/types'
 &nbsp;
 const Comics = () =&gt; {
   const [comics, setComics] = useState&lt;TComic[]&gt;([])
   const [offsetComics, setOffsetComics] = useState&lt;number&gt;(0)
-  const [totalOffset, setTotalOffset] = useState&lt;number&gt;(0)
+  const [totalComicsCount, setTotalComicsCount] = useState&lt;number&gt;(0)
   const [{ limitComics, orderByDate, query, sort }, setFilter] =
-    useState&lt;IFilter&gt;({
+    useState&lt;IComicFilter&gt;({
       sort: '',
       query: '',
       limitComics: 20,
@@ -281,8 +288,8 @@ const Comics = () =&gt; {
     TOrderBy
   &gt;(async (limit, offset, orderBy) =&gt; {
     const response = await ComicsService.getAllComics(limit, offset, orderBy)
-    const totalComicsCount = <span class="cstat-no" title="statement not covered" >response.total</span>
-<span class="cstat-no" title="statement not covered" >    setTotalOffset(getTotalCount(totalComicsCount, limitComics))</span>
+    const totalComicsCountFromServer = <span class="cstat-no" title="statement not covered" >response.total</span>
+<span class="cstat-no" title="statement not covered" >    setTotalComicsCount(totalComicsCountFromServer)</span>
 &nbsp;
     const comicsFromServer: TComic[] = <span class="cstat-no" title="statement not covered" >response.results.map(<span class="fstat-no" title="function not covered" >(c</span>omic) =&gt; (<span class="cstat-no" title="statement not covered" >{</span></span>
       id: comic.id,
@@ -291,24 +298,28 @@ const Comics = () =&gt; {
       description: comic.description || comic.textObjects[0]?.text,
       thumbnail: !comic.thumbnail.path.includes('image_not_available')
         ? `${comic.thumbnail.path}.${comic.thumbnail.extension}`
-        : `/images/no-image.jpg`,
+        : `/images/no-comic.webp`,
       onsaleDate: comic.dates[0].date,
       pageCount: comic.pageCount,
       format: comic.format,
+      orderBy: orderBy ?? '-focDate',
     }))
 &nbsp;
-<span class="cstat-no" title="statement not covered" >    setComics(<span class="fstat-no" title="function not covered" >(p</span>rev) =&gt;</span>
+<span class="cstat-no" title="statement not covered" >    setComics(<span class="fstat-no" title="function not covered" >(p</span>rev) =&gt; {</span>
+      //reset state for new orderBy
+<span class="cstat-no" title="statement not covered" >      <span class="missing-if-branch" title="if path not taken" >I</span>if (orderBy !== prev[0]?.orderBy) <span class="cstat-no" title="statement not covered" >return comicsFromServer</span></span>
+&nbsp;
       //remove duplicates from backend
-<span class="cstat-no" title="statement not covered" >      [...prev, ...comicsFromServer].filter(</span>
+<span class="cstat-no" title="statement not covered" >      return [...prev, ...comicsFromServer].filter(</span>
 <span class="fstat-no" title="function not covered" >        (e</span>l1, i, ar) =&gt; <span class="cstat-no" title="statement not covered" >i === ar.findIndex(<span class="fstat-no" title="function not covered" >(e</span>l2) =&gt; <span class="cstat-no" title="statement not covered" >el2.id === el1.id)</span></span>
       )
-    )
+    })
   })
 &nbsp;
   const targetRefComics = useObserver(
 <span class="fstat-no" title="function not covered" >    () =</span>&gt; <span class="cstat-no" title="statement not covered" >setOffsetComics(<span class="fstat-no" title="function not covered" >(p</span>rev) =&gt; <span class="cstat-no" title="statement not covered" >prev + limitComics)</span>,</span>
     isComicsLoading,
-    offsetComics &lt; totalOffset &amp;&amp; <span class="branch-1 cbranch-no" title="branch not covered" >query.length === 0,</span>
+    offsetComics &lt; totalComicsCount &amp;&amp; <span class="branch-1 cbranch-no" title="branch not covered" >query.length === 0,</span>
     '150%'
   )
 &nbsp;
@@ -322,6 +333,7 @@ const Comics = () =&gt; {
       &lt;ComicFilter
         filter={{ limitComics, orderByDate, query, sort }}
         setFilter={setFilter}
+        setOffset={setOffsetComics}
       /&gt;
       {!comicsError &amp;&amp; (
         &lt;ComicsList
@@ -343,7 +355,7 @@ export default Comics
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2024-03-15T14:35:15.778Z
+                at 2024-04-04T21:05:18.111Z
             </div>
         <script src="../../prettify.js"></script>
         <script>

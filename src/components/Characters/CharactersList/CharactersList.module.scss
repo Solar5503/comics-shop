@@ -1,0 +1,23 @@
+.charactersList {
+  background-color: rgba(0, 0, 0, 0.499);
+  border-radius: 1rem;
+  padding: 1rem;
+  display: grid;
+  grid-template-rows: min-content 1fr;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 2rem;
+  justify-items: center;
+
+  &__title {
+    grid-column: 1 / -1;
+    color: var(--primary-color);
+    text-shadow: var(--primary-text-shadow);
+    font-size: calc(1rem + 3vw);
+    text-align: center;
+  }
+  &__empty {
+    text-align: center;
+    text-shadow: var(--primary-text-shadow);
+    font-size: calc(1rem + 1vw);
+  }
+}

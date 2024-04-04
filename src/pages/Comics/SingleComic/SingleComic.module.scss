@@ -4,6 +4,7 @@
   grid-template-columns: 1fr 2fr;
   -moz-column-gap: 1rem;
   column-gap: 1rem;
+  overflow: hidden;
 
   &__title {
     grid-column: 2/-1;

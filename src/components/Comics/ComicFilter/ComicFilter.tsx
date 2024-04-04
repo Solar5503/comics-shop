@@ -1,19 +1,19 @@
-import { IFilter, TOrderBy, TSortBy } from '../../../types/types'
+import { IComicFilter, TOrderBy, TSortComicBy } from '../../../types/types'
 import Card from '../../UI/Card/Card'
 import Input from '../../UI/Input/Input'
 import Select from '../../UI/Select/Select'
 import styles from './ComicFilter.module.scss'
 
 interface IComicFilterProps {
-  filter: IFilter
-  setFilter: React.Dispatch<React.SetStateAction<IFilter>>
+  filter: IComicFilter
+  setFilter: React.Dispatch<React.SetStateAction<IComicFilter>>
+  setOffset: React.Dispatch<React.SetStateAction<number>>
 }
 
-const ComicFilter = ({ filter, setFilter }: IComicFilterProps) => {
+const ComicFilter = ({ filter, setFilter, setOffset }: IComicFilterProps) => {
   return (
     <Card className={styles['comic-filter']}>
       <Select
-        className={styles.comicsList__select}
         value={filter.limitComics}
         changeHandler={(value) =>
           setFilter((prev) => ({ ...prev, limitComics: +value }))
@@ -30,7 +30,7 @@ const ComicFilter = ({ filter, setFilter }: IComicFilterProps) => {
         urlArrow="/select/hulk-arrow.svg"
         value={filter.sort}
         changeHandler={(value) =>
-          setFilter((prev) => ({ ...prev, sort: value as TSortBy }))
+          setFilter((prev) => ({ ...prev, sort: value as TSortComicBy }))
         }
         defaultValue="Sort by"
         options={[
@@ -43,9 +43,10 @@ const ComicFilter = ({ filter, setFilter }: IComicFilterProps) => {
       <Select
         urlArrow="/select/captain-arrow.svg"
         value={filter.orderByDate}
-        changeHandler={(value) =>
+        changeHandler={(value) => {
+          setOffset(0)
           setFilter((prev) => ({ ...prev, orderByDate: value as TOrderBy }))
-        }
+        }}
         defaultValue="Order by"
         options={[
           { name: 'Order Cut-off Date ⬇', value: '-focDate' },
@@ -60,7 +61,7 @@ const ComicFilter = ({ filter, setFilter }: IComicFilterProps) => {
       <Input
         type="search"
         name="search comics"
-        placeholder="Search Comics..."
+        placeholder="Quick Search Comics..."
         className={styles['comic-filter__input']}
         value={filter.query}
         onChange={(e: React.ChangeEvent<HTMLInputElement>) =>

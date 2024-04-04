@@ -44,7 +44,7 @@ const SingleComic = () => {
           'image_not_available'
         )
           ? `${comicResponse[0].thumbnail.path}.${comicResponse[0].thumbnail.extension}`
-          : `/images/no-image.jpg`,
+          : `/images/no-comic.webp`,
         onsaleDate: comicResponse[0].dates[0].date,
         pageCount: comicResponse[0].pageCount,
         format: comicResponse[0].format,
@@ -78,7 +78,7 @@ const SingleComic = () => {
           description: comic.description || comic.textObjects[0]?.text,
           thumbnail: !comic.thumbnail.path.includes('image_not_available')
             ? `${comic.thumbnail.path}.${comic.thumbnail.extension}`
-            : `/images/no-image.jpg`,
+            : `/images/no-comic.webp`,
           onsaleDate: comic.dates[0].date,
           pageCount: comic.pageCount,
         })

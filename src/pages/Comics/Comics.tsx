@@ -7,15 +7,14 @@ import { useFetching } from '../../hooks/useFetching'
 import { useObserver } from '../../hooks/useObserver'
 import { useSortingAndSearching } from '../../hooks/useSortingAndSearching'
 import ComicsService from '../../services/ComicsService'
-import { IFilter, TComic, TOrderBy } from '../../types/types'
-import { getTotalCount } from '../../utils/getTotalCount'
+import { IComicFilter, TComic, TOrderBy } from '../../types/types'
 
 const Comics = () => {
   const [comics, setComics] = useState<TComic[]>([])
   const [offsetComics, setOffsetComics] = useState<number>(0)
-  const [totalOffset, setTotalOffset] = useState<number>(0)
+  const [totalComicsCount, setTotalComicsCount] = useState<number>(0)
   const [{ limitComics, orderByDate, query, sort }, setFilter] =
-    useState<IFilter>({
+    useState<IComicFilter>({
       sort: '',
       query: '',
       limitComics: 20,
@@ -34,8 +33,8 @@ const Comics = () => {
     TOrderBy
   >(async (limit, offset, orderBy) => {
     const response = await ComicsService.getAllComics(limit, offset, orderBy)
-    const totalComicsCount = response.total
-    setTotalOffset(getTotalCount(totalComicsCount, limitComics))
+    const totalComicsCountFromServer = response.total
+    setTotalComicsCount(totalComicsCountFromServer)
 
     const comicsFromServer: TComic[] = response.results.map((comic) => ({
       id: comic.id,
@@ -44,24 +43,28 @@ const Comics = () => {
       description: comic.description || comic.textObjects[0]?.text,
       thumbnail: !comic.thumbnail.path.includes('image_not_available')
         ? `${comic.thumbnail.path}.${comic.thumbnail.extension}`
-        : `/images/no-image.jpg`,
+        : `/images/no-comic.webp`,
       onsaleDate: comic.dates[0].date,
       pageCount: comic.pageCount,
       format: comic.format,
+      orderBy: orderBy ?? '-focDate',
     }))
 
-    setComics((prev) =>
+    setComics((prev) => {
+      //reset state for new orderBy
+      if (orderBy !== prev[0]?.orderBy) return comicsFromServer
+
       //remove duplicates from backend
-      [...prev, ...comicsFromServer].filter(
+      return [...prev, ...comicsFromServer].filter(
         (el1, i, ar) => i === ar.findIndex((el2) => el2.id === el1.id)
       )
-    )
+    })
   })
 
   const targetRefComics = useObserver(
     () => setOffsetComics((prev) => prev + limitComics),
     isComicsLoading,
-    offsetComics < totalOffset && query.length === 0,
+    offsetComics < totalComicsCount && query.length === 0,
     '150%'
   )
 
@@ -75,6 +78,7 @@ const Comics = () => {
       <ComicFilter
         filter={{ limitComics, orderByDate, query, sort }}
         setFilter={setFilter}
+        setOffset={setOffsetComics}
       />
       {!comicsError && (
         <ComicsList
