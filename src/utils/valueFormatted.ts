@@ -56,11 +56,11 @@ export const charactersFormatted = function (
       ? `${character.thumbnail.path}.${character.thumbnail.extension}`
       : '/images/no-character.webp',
     comics: character.comics.items.map((comic) => ({
-      comicId: Number(comic.resourceURI.match(/\d+$/)?.[0] || 0),
+      comicId: Number(comic.resourceURI.match(/\d+$/)?.[0] ?? 0),
       name: comic.name,
     })),
     series: character.series.items.map((series) => ({
-      seriesId: Number(series.resourceURI.match(/\d+$/)?.[0] || 0),
+      seriesId: series.resourceURI.match(/\d+$/)?.[0] ?? '',
       name: series.name,
     })),
     orderBy: orderBy ?? 'name',

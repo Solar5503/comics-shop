@@ -120,9 +120,10 @@ export type TCharacter = {
   comics: Array<{
     comicId: number
     name: string
+    comicImg?: string
   }>
   series: Array<{
-    seriesId: number
+    seriesId: string
     name: string
   }>
   orderBy?: TOrderCharacterBy
