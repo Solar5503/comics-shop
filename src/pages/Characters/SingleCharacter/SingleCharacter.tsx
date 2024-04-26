@@ -136,7 +136,7 @@ const SingleCharacter = () => {
               <ul className={styles['single-character__series-list']}>
                 {character?.series?.map((series) => (
                   <li
-                    className="single-character__series-item"
+                    className={styles['single-character__series-item']}
                     key={series.seriesId}
                   >
                     <Link

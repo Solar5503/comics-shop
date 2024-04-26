@@ -55,7 +55,7 @@
 
   &__description {
     max-width: 70%;
-    margin: 5rem 1rem;
+    margin: max(4vw, 1rem) 1rem;
     background-color: rgba(0, 0, 0, 0.4);
     font-size: calc(0.5rem + 1vw);
     opacity: 0.8;
@@ -73,7 +73,7 @@
     margin: 0 calc(2.5rem + 2vw);
     margin-bottom: 3rem;
     max-width: 80%;
-    animation: anime-img 3s linear forwards;
+    animation: anime-img 2s linear forwards;
     align-self: flex-end;
   }
 
@@ -130,6 +130,10 @@
     box-shadow: var(--secondary-box-shadow);
     opacity: 0;
     animation: anime-left 3s ease-in-out 10s forwards;
+  }
+
+  &__series-item {
+    margin: 0.5rem;
   }
 
   &__comics-link {
@@ -195,23 +199,12 @@
     opacity: 0;
     border-radius: 50%;
   }
-  25% {
-    width: 25%;
-    height: 25%;
-    transform: rotateZ(-10deg);
-    opacity: 0.4;
-    border-radius: 50%;
-  }
   50% {
     width: 50%;
     height: auto;
     transform: rotateZ(10deg) scaleX(-1);
     opacity: 0.6;
     filter: grayscale(1);
-  }
-  75% {
-    transform: rotateZ(-5deg);
-    opacity: 0.8;
   }
   100% {
     max-width: 100%;
