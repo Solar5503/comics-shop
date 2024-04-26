@@ -29,7 +29,7 @@ const ComicsBySeries = () => {
           description: comic.description || comic.textObjects[0]?.text,
           thumbnail: !comic.thumbnail.path.includes('image_not_available')
             ? `${comic.thumbnail.path}.${comic.thumbnail.extension}`
-            : `/images/no-image.jpg`,
+            : `/images/no-comic.webp`,
           onsaleDate: comic.dates[0].date,
           pageCount: comic.pageCount,
           series: {
