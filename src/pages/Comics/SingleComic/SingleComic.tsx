@@ -135,7 +135,7 @@ const SingleComic = () => {
     <section data-testid="single-comic-page">
       {comicError && <Error error={comicError} />}
       {isComicLoading && <Loader />}
-      {!comicError && (
+      {!comicError && !isComicLoading && (
         <Card className={styles['single-comic']}>
           <h1
             className={`${styles['single-comic__title']} ${formatColorStyle(

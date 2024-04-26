@@ -55,7 +55,7 @@ export default class ComicsService {
     return response.data.data.results
   }
   static async getCharacterById(characterId: string) {
-    const response = await axios.get<IMarvelServerResponse>(
+    const response = await axios.get<IMarvelServerResponse<ICharacterResults>>(
       `/characters/${characterId}`,
       {
         baseURL: MARVEL_URL,
@@ -96,6 +96,19 @@ export default class ComicsService {
           apikey: import.meta.env.VITE_PUBLIC_API_KEY,
           nameStartsWith,
           limit: 100,
+        },
+      }
+    )
+    return response.data.data.results
+  }
+
+  static async getComicsByCharacterId(characterId: string) {
+    const response = await axios.get<IMarvelServerResponse>(
+      `/characters/${characterId}/comics`,
+      {
+        baseURL: MARVEL_URL,
+        params: {
+          apikey: import.meta.env.VITE_PUBLIC_API_KEY,
         },
       }
     )
